@@ -17,9 +17,7 @@ logo:     docs/thumbnail.JPG
 
 icon:     docs/twillo_logo.svg
 
-link:     https://cdn.jsdelivr.net/gh/TorroRosso46/Suchprobleme/custom.css
-
-import:   
+link:     ./custom.css
 -->
 
 # Dynamische Datenstrukturen
