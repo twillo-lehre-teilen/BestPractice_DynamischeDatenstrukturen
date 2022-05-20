@@ -184,7 +184,13 @@ und **schreiben** mit
 
 ---
 
+<lia-keep><h4>Typische Problemstellungen</h4></lia-keep>
+
+Als typische Problemstellungen haben wir zum einen die Traversierung, zum Anderen das Löschen eines inneren Knotens und die daraus folgende Re-strukturierung des Baumes und das Suchen in Bäumen.
+
 #### Traversierung
+
+
 
 ## Bäume
 
