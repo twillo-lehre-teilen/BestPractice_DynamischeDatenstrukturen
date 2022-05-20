@@ -199,19 +199,19 @@ In Java gibt es keine hauseigene Implementierung für allgemeine Bäume. Einige 
 
 Bäume können visuell gut dargestellt werden. Manchmal ist jedoch eine Serialisierung der Elemente eines Baumes nötig. Man kann die Elemente eines Baumes durch *Preorder-Aufzählung*, *Inorder-Aufzählung*, *Postorder-Aufzählung* oder *Levelorder-Aufzählung* eindeutig aufzählen.
 
-Bei der **Traversierung** werden systematisch **alle Knoten** des Baumes durchlaufen.
+> Bei der **Traversierung** werden systematisch **alle Knoten** des Baumes durchlaufen.
 
 <center>
 ![Beispiel_Graph_4](docs/Beispiel_Graph_4.svg)
 </center>
 
-**Preorder (W-L-R):** $A\to B\to D\to E\to C\to F\to G$
-
-**Inorder (L-W-R):** $D\to B\to E\to A\to F\to C\to G$
-
-**Postorder (L-R-W):** $D\to E\to B\to F\to G\to C\to A$
-
-**Levelorder:** $A\to B\to C\to D\to E\to F\to G$
+> **Preorder (W-L-R):** $A\to B\to D\to E\to C\to F\to G$
+>
+> **Inorder (L-W-R):** $D\to B\to E\to A\to F\to C\to G$
+>
+> **Postorder (L-R-W):** $D\to E\to B\to F\to G\to C\to A$
+>
+> **Levelorder:** $A\to B\to C\to D\to E\to F\to G$
 
 ---
 
@@ -429,6 +429,8 @@ Bei der Postorder Traversierung wird zuerst der linke und der rechte Teilbaum be
 ```
 
 ## Bäume
+
+In dem folgenden Kapitel werden wir Ihnen verschiedene Baumtypen vorstellen. Angefangen bei den **Binären Suchbäumen**, gefolgt von den **AVL-** und den **2-3-4-Bäumen**, bis hin zu den **Rot-Schwarz-Bäumen**.
 
 ### Binäre Suchbäume
 
