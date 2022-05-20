@@ -188,9 +188,245 @@ und **schreiben** mit
 
 Als typische Problemstellungen haben wir zum einen die Traversierung, zum Anderen das Löschen eines inneren Knotens und die daraus folgende Re-strukturierung des Baumes und das Suchen in Bäumen.
 
+---
+
+<lia-keep><h4>Bäume in Java</h4></lia-keep>
+
+In Java gibt es keine hauseigene Implementierung für allgemeine Bäume. Einige Klassen *(TreeMap, TreeSet)* benutzen Bäume zur Realisierung anderer Datenstrukturen. Andere Klassen *(JTree)* benutzen Bäume als Datenmodell zur Visualisierung.
+
+
 #### Traversierung
 
+Bäume können visuell gut dargestellt werden. Manchmal ist jedoch eine Serialisierung der Elemente eines Baumes nötig. Man kann die Elemente eines Baumes durch *Preorder-Aufzählung*, *Inorder-Aufzählung*, *Postorder-Aufzählung* oder *Levelorder-Aufzählung* eindeutig aufzählen.
 
+Bei der **Traversierung** werden systematisch **alle Knoten** des Baumes durchlaufen.
+
+<center>
+![Beispiel_Graph_4](docs/Beispiel_Graph_4.svg)
+</center>
+
+**Preorder (W-L-R):** $A\to B\to D\to E\to C\to F\to G$
+
+**Inorder (L-W-R):** $D\to B\to E\to A\to F\to C\to G$
+
+**Postorder (L-R-W):** $D\to E\to B\to F\to G\to C\to A$
+
+**Levelorder:** $A\to B\to C\to D\to E\to F\to G$
+
+---
+
+<lia-keep><h4>Traversierung mit Iteratoren</h4></lia-keep>
+
+Bei der Traversierung sind Iteratoren erlaubt. Diese werden schrittweise abgearbeitet und es werden Standardschleifen für die Baumdurchläufe verwendet.
+
+``` Java
+  for (Integer i : tree) {
+    System.out.print(i);
+  }
+```
+
+Dabei ist es allerdings notwendig, dass der Bearbeitungszustand zwischengespeichert wird.
+
+
+``` Java
+  public class BinarySearchTree<K extends Comparable<K>> implements Iterable<K> {
+
+    public static final int INORDER = 1;  
+    public static final int PREORDER = 2;
+    public static final int POSTORDER = 3;
+    public static final int LEVELORDER = 4;
+
+    private int iteratorOrder;
+    ...
+
+    public void setIterationOrder(int io) {
+      if (io < i || io > 4) {
+        return;
+      }
+      iteratorOrder = io;
+    }
+
+    public Iterator<K> iterator() {
+      switch (iterationOrder) {
+       case INORDER:
+        return new InorderIterator<K>(this);
+       case PRORDER:
+        return new PreorderIterator<K>(this);
+       case POSTORDER:
+        return new PostorderIterator<K>(this);
+       case LEVELORDER:
+        return new LevelorderIterator<K>(this);
+       default:
+        return new InorderIterator<K>(this);
+      }
+    }
+  }
+```
+
+---
+
+<lia-keep><h4>Preorder Traversierung</h4></lia-keep>
+
+Bei der Preorder Traversierung wird der aktuelle Knoten zuerst behandelt und dann der linke oder rechte Teilbaum.
+
+``` Java
+  static class TreeNode<K extends Comparable<K>> {
+  ...
+
+    public void traverse() {
+      if (key==null) {
+        return;
+      }
+      System.out.print(” ” + key);
+      left.traverse();
+      right.traverse();
+    }  
+  }
+```
+
+---
+
+<lia-keep><h4>Preorder Iteratoren</h4></lia-keep>
+
+Der Wurzelknoten wird auf den Stack gelegt, anschließend der rechte Knoten und dann der linke Knoten.
+
+``` Java
+  class PreorderIterator<K extends Comparable <K>> implements Iterator<K> {
+
+    java.util.Stack<TreeNode<K>> st = new java.util.Stack<TreeNode<K>>();
+
+    public PreorderIterator(BinarySearchTree<K> tree) {
+      if (tree.head.getRight() != nullNode) {
+        st.push(tree.head.getRight());
+      }   
+    }
+
+    public boolean hasNext() {
+      return !st.isEmpty();
+    }
+
+    public K next() {
+      TreeNode<K> node = st.pop();
+      K obj = node.getKey();
+      node = node.getRight();
+      if(node != nullNode) {
+         st.push(node);  //rechten Knoten auf den Stack
+      }
+      node = node.getLeft();
+      if(node != nullNode) {
+         st.push(node);  //linken Knoten auf den Stack
+      }
+      return obj;
+    }
+  }
+```
+
+---
+
+<lia-keep><h4>Inorder Traversierung</h4></lia-keep>
+
+Bei der Inorder Traversierung wird zuerst der linke Teilbaum behandelt, dann der aktuelle Knoten und dann der rechte Teilbaum. Als Ergebnis erhält man den Baum in sortierter Reihenfolge.
+
+``` Java
+  static class TreeNode<K extends Comparable<K>> {
+    ...
+    public void traverse() {
+      if (key==null) {
+          return;
+      }
+      left.traverse();
+      System.out.print(” ” + key);
+      right.traverse();
+    }   
+  }
+```
+
+---
+
+<lia-keep><h4>Inorder Iteratoren</h4></lia-keep>
+
+Der Knoten head hat immer einen rechten Nachfolger. Es wird vom Wurzelknoten begonnen alle linken Knoten auf den Stack zu legen.
+
+``` Java
+  class InorderIterator<K extends Comparable <K>> implements Iterator<K> {
+
+    java.util.Stack<TreeNode<K>> st = new java.util.Stack<TreeNode<K>>();
+
+    public InorderIterator(BinarySearchTree<K> tree) {
+      TreeNode<K> node = tree.head.getRight();
+      while (node != nullNode) {
+        st.push(node);
+        node = node.getLeft();
+      }
+    }
+
+    public boolean hasNext() {
+      return !st.isEmpty();
+    }
+
+    public K next() {
+      TreeNode<K> node = st.pop();
+      K obj = node.getKey();
+      node = node.getRight();  //rechten Knoten holen
+      while (node != nullNode) {
+        st.push(node);
+        node = node.getLeft();  //linken Knoten auf den Stack
+      }
+      return obj;
+    }
+  }
+```
+
+---
+
+<lia-keep><h4>Postorder Traversierung</h4></lia-keep>
+
+Bei der Postorder Traversierung wird zuerst der linke und der rechte Teilbaum behandelt und dann der aktuelle Knoten. Dies kann beispielsweise genutzt werden, um einen Baum aus Termen, entsprechend der Priorität der Operatoren, auszuwerten.
+
+``` Java
+  static class TreeNode<K extends Comparable<K>> {
+    ...
+    public void traverse() {
+      if (key==null) {
+          return;
+      }
+      left.traverse();
+      right.traverse();   
+      System.out.print(” ” + key);
+    }
+  }
+```
+
+---
+
+<lia-keep><h4>Levelorder Iteratoren</h4></lia-keep>
+
+``` Java
+  class LevelorderIterator<K extends Comparable <K>> implements Iterator<K> {
+
+    //Wurzelknoten in die Warteschlange (queue) einfügen
+    java.util.Queue<TreeNode<K>> q = new java.util.LinkedList<TreeNode<K>>();
+
+    public LevelorderIterator(BinarySearchTree<K> tree) {
+      TreeNode<K> node = tree.head.getRight();
+      if (node != nullNode) {
+        q.addLast(node);
+      }
+    }
+
+    public K next() {
+      TreeNode<K> node = q.getFirst();
+      K obj = node.getKey();
+      if (node.getLeft() != nullNode) {
+        q.addLast(node.getLeft());
+      }
+      if (node.getRight() != nullNode) {
+        q.addLast(node.getRight());
+      }
+      return obj;
+    }
+  }
+```
 
 ## Bäume
 
