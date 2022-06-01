@@ -620,6 +620,73 @@ public boolean  insert(K k) {
 
 #### Löschen
 
+Zuerst wird das zu löschendes Element gesucht, der Knoten k. Nun gibt es drei Fälle
+
+  1. $k$ ist Blatt: löschen
+  2. $k$ hat ein Kind: Kind „hochziehen“
+  3. $k$ hat zwei Kinder: Tausche mit weitest links stehenden Kind des rechten Teilbaums, da dieser in der Sortierreihenfolge der nächste Knoten ist und entferne diesen nach den Regeln 1. oder 2.
+
+Ein Schlüssel wird in drei Schritten gelöscht. Im ersten Schritt wird der zu löschende Knoten gefunden. Im zweiten Schritt wird der Nachrückknoten gefunden. Dafür gibt es mehrere Fälle. Im **Fall 1** handelt es sich um einen externen Knoten, sprich ein Blatt, ohne Kinder. Dabei wird der Knoten durch einen nullNode ersetzt. Im **Fall 2a** gibt es nur einen rechten Kindknoten, dabei wird der gelöschte Knoten durch den rechten Kindknoten ersetzt. Im **Fall 2b** gibt es nur einen linken Kindknoten und der gelöschte Knoten wird durch diesen ersetzt. Im **Fall 3** gibt es einen internen Knoten mit Kindern rechts und links. Dabei wird der gelöschte Knoten durch den Knoten mit dem kleinstem (alternativ größtem) Schlüssel im rechten (alternativ linken) Teilbaum ersetzt. Im dritten und letzten Schritt wird nun der Baum **reorganisiert**. Während dem Löschen kann sich die Höhe von Teilbäumen ändern.
+
+<center>
+![Binärbaum Einfügen](docs/BinärBaum_Einfügen.svg)
+</center>
+
+<h4>Programm in Java</h4>
+
+``` java
+/* Knoten suchen */
+public boolean  remove(K k) {
+  TreeNode<K> parent = head;
+  TreeNode<K> node = head.getRight();
+  TreeNode<K> child = null;
+  TreeNode<K> tmp = null;
+  while (node != nullNode) {
+    int cmp = node.compareKeyTo(k);
+    //Löschposition gefunden
+    if (cmp == 0) {
+      break;
+    } else {
+      parent = node;
+      node = (cmp > 0 ? node.getLeft() : node.getRight());
+    }
+  }
+  //Knoten k nicht im Baum
+  if (node == nullNode) {
+    return false;
+  }
+  /* Nachrücker finden */
+  if (node.getLeft() == nullNode  && Node.getRight() == nullNode) { //Fall 1
+    child = nullNode;
+  } else if (node.getLeft() == nullNode) { //Fall 2a
+    child = node.getRight();
+  } else if (node.getRight() == nullNode) { //Fall 2b
+    child = node.getLight();
+    ...   
+  } else { //Fall 3
+    child = node.getRight();
+    tmp = node;
+    while (child.getLeft() != nullNode) {
+      tmp = child;
+      child = child.getLeft();
+    }
+    child.setLeft(node.getLeft());
+    if (tmp != node) {
+      tmp.setLeft(child.getRight());
+      child.setRight(node.getRight());
+    }
+  }
+  /* Baum reorganisieren */
+  if (parent.getLeft() == node) {
+    parent.setLeft(child)
+  } else {
+    parent.setRight(child);
+  }
+  return true;
+  ...
+}
+```
+
 ### AVL-Bäume
 
 ### 2-3-4-Bäume
