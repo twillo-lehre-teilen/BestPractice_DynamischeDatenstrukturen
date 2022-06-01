@@ -586,16 +586,20 @@ Bei der Auswertung müssen die Operatoren auf die beiden Werte der Teilbäume an
 
 Das Finden der Einfügeposition erfolgt durch Suchen des Knotens, dessen Schlüsselwert größer als der einzufügende Schlüssel ist und der keinen linken Nachfolger hat oder durch Suchen des Knotens, dessen Schlüsselwert kleiner als der einzufügende Schlüssel ist und der keinen rechten Nachfolger hat. Das Einfügen erfolgt prinzipiell in 2 Schritten. Im ersten Schritt wird die Einfügeposition gesucht, sprich der Blattknoten mit dem nächstkleineren oder nächstgrößerem Schlüssel. Im zweiten Schritt wird ein neuer Knoten erzeugt und als Kindknoten des Knotens aus Schritt eins verlinkt. Wenn in Schritt eins der Schlüssel bereits existiert, dann wird nicht erneut eingefügt.
 
-<h4>Programm in Java</h4>
+<h5>Programm in Java</h5>
 
 ``` java
 /* Einfügeposition suchen */
 public boolean  insert(K k) {
+
   TreeNode<K> parent = head;
   TreeNode<K> child = head.getRight();
+
   while (child != nullNode) {
+
     parent = child;
     int cmp = child.compareKeyTo(k);
+
     //Schlüssel bereits vorhanden
     if (cmp == 0) {
       return false;
@@ -604,17 +608,22 @@ public boolean  insert(K k) {
     } else {
       child = child.getRight();
     }
+
   }
+
   /* Neuen Knoten verlinken */  
   TreeNode<K> node = new TreeNode<K>(k);
   node.setLeft(nullNode);
   node.setRight(nullNode);
+
   if (parent.compareKeyTo(k) > 0) {
     parent.setLeft(node);
   } else {
     parent.setRight(node);
   }
+
   return true;
+
 }
 ```
 
@@ -632,17 +641,21 @@ Ein Schlüssel wird in drei Schritten gelöscht. Im ersten Schritt wird der zu l
 ![Binärbaum Einfügen](docs/BinärBaum_Einfügen.svg)
 </center>
 
-<h4>Programm in Java</h4>
+<h5>Programm in Java</h5>
 
 ``` java
 /* Knoten suchen */
 public boolean  remove(K k) {
+
   TreeNode<K> parent = head;
   TreeNode<K> node = head.getRight();
   TreeNode<K> child = null;
   TreeNode<K> tmp = null;
+
   while (node != nullNode) {
+
     int cmp = node.compareKeyTo(k);
+
     //Löschposition gefunden
     if (cmp == 0) {
       break;
@@ -650,40 +663,57 @@ public boolean  remove(K k) {
       parent = node;
       node = (cmp > 0 ? node.getLeft() : node.getRight());
     }
+
   }
+
   //Knoten k nicht im Baum
   if (node == nullNode) {
     return false;
   }
+
   /* Nachrücker finden */
   if (node.getLeft() == nullNode  && Node.getRight() == nullNode) { //Fall 1
+
     child = nullNode;
+
   } else if (node.getLeft() == nullNode) { //Fall 2a
+
     child = node.getRight();
+
   } else if (node.getRight() == nullNode) { //Fall 2b
+
     child = node.getLight();
-    ...   
+    ...
+
   } else { //Fall 3
+
     child = node.getRight();
     tmp = node;
+
     while (child.getLeft() != nullNode) {
       tmp = child;
       child = child.getLeft();
     }
+
     child.setLeft(node.getLeft());
+
     if (tmp != node) {
       tmp.setLeft(child.getRight());
       child.setRight(node.getRight());
     }
+
   }
+
   /* Baum reorganisieren */
   if (parent.getLeft() == node) {
     parent.setLeft(child)
   } else {
     parent.setRight(child);
   }
+
   return true;
   ...
+
 }
 ```
 
