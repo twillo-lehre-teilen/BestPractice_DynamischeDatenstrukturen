@@ -780,6 +780,8 @@ Das Ziel der Implementierung ist, die Reduzierung der Zahl an Sonderfällen. Im 
 
 Die Komplexität der Operation hängt von der Höhe ab. Der Aufwand für die Höhe des Baumes beträgt $O(h)$. Die Höhe eines ausgeglichenen binären Baumes ist $h=ld(n)$ für Knoten. Bei einem ausgeglichenen oder balancierten Baum unterscheiden sich zum einen der rechte und linke Teilbaum eines jeden Knotens in der Höhe um höchstens $1$ und zum anderen unterscheiden sich je zwei Wege von der Wurzel zu einem Blattknoten höchstens um $1$ in der Länge. Rot-Schwarz Bäume und AVL Bäume benötigen einen Ausgleich nach dem Einfügen und Löschen.
 
+---
+
 <h4>Entartung von Bäumen</h4>
 
 Eine ungünstige Einfüge- oder Löschreihenfolge führt zu extremer Unbalanciertheit im Baum. Im Extremfall wird der Baum zur Liste, dann haben die Operationen eine Komplexität von $O(n)$. Beispiel:
