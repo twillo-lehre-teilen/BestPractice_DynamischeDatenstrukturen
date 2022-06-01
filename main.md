@@ -452,7 +452,7 @@ Hier ist der Baum ein Datenindex und eine Alternative zu Listen und Arrays. Beis
 ![BinärBaum Suchbaum](docs/BinärBaum_Suchbaum.svg)
 </center>
 
-Bei der Anwendung von Bäumen zur effizienten Suche gibt es pro Knoten einen Schlüssel und ein Datenelement und die Ordnung der Knoten erfolgt anhand der Schlüssel. Bei einem binärer Suchbaum enthält der Knoten $k$ einen Schlüsselwert $k.key$. Alle Schlüsselwerte im linken Teilbaum $k.left$ sind kleiner als $k.key$ und alle Schlüsselwerte im rechten Teilbaum $k.right$ sind größer als $k.key$. Die Auswertung eines Suchbaums sieht wie folgt aus:
+Bei der Anwendung von Bäumen zur effizienten Suche gibt es pro Knoten einen Schlüssel und ein Datenelement. Die Ordnung der Knoten erfolgt anhand der Schlüssel. Bei einem binärer Suchbaum enthält der Knoten $k$ einen Schlüsselwert $k.key$. Alle Schlüsselwerte im linken Teilbaum $k.left$ sind kleiner als $k.key$ und alle Schlüsselwerte im rechten Teilbaum $k.right$ sind größer als $k.key$. Die Auswertung eines Suchbaums sieht wie folgt aus:
 
 > 1. Vergleich des Suchschlüssels mit Schlüssel der Wurzel
 > 2. Wenn kleiner, dann in linken Teilbaum weiter suchen
@@ -582,7 +582,7 @@ Bei der Auswertung müssen die Operatoren auf die beiden Werte der Teilbäume an
 
 #### Einfügen
 
-Das Finden der Einfügeposition erfolgt durch Suchen des Knotens, dessen Schlüsselwert größer als der einzufügende Schlüssel ist und der keinen linken Nachfolger hat oder durch Suchen des Knotens, dessen Schlüsselwert kleiner als der einzufügende Schlüssel ist und der keinen rechten Nachfolger hat. Das Einfügen erfolgt prinzipiell in 2 Schritten. Im ersten Schritt wird die Einfügeposition gesucht, sprich der Blattknoten mit dem nächstkleineren oder nächstgrößerem Schlüssel. Im zweiten Schritt wird ein neuer Knoten erzeugt und als Kindknoten des Knotens aus Schritt eins verlinkt. Wenn in Schritt eins der Schlüssel bereits existiert, dann wird nicht erneut eingefügt.
+Das Finden der Einfügeposition erfolgt durch Suchen des Knotens, dessen Schlüsselwert größer als der einzufügende Schlüssel ist und der keinen linken Nachfolger hat oder durch Suchen des Knotens, dessen Schlüsselwert kleiner als der einzufügende Schlüssel ist und der keinen rechten Nachfolger hat. Das Einfügen erfolgt prinzipiell in 2 Schritten. Im **ersten Schritt** wird die Einfügeposition gesucht, sprich der Blattknoten mit dem nächstkleineren oder nächstgrößerem Schlüssel. Im **zweiten Schritt** wird ein neuer Knoten erzeugt und als Kindknoten des Knotens aus Schritt eins verlinkt. Wenn in Schritt eins der Schlüssel bereits existiert, dann wird nicht erneut eingefügt.
 
 <h5>Programm in Java</h5>
 
@@ -627,7 +627,7 @@ public boolean  insert(K k) {
 
 #### Löschen
 
-Zuerst wird das zu löschendes Element gesucht, der Knoten k. Nun gibt es drei Fälle
+Zuerst wird das zu löschendes Element gesucht, der Knoten $k$. Nun gibt es **drei** Fälle
 
   1. $k$ ist Blatt: löschen
   2. $k$ hat ein Kind: Kind „hochziehen“
