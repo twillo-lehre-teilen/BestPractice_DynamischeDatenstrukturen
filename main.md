@@ -715,6 +715,83 @@ public boolean  remove(K k) {
 }
 ```
 
+#### Implementierung
+
+Ein binärer Suchbaum ist eine häufig verwendete Hauptspeicherstruktur und ist besonders geeignet für Schlüssel fester Größe, z.B. numerische wie *int*, *float* und *char[n]*. Der Aufwand von $O(log n)$ für Suchen, Einfügen und Löschen ist garantiert, vorausgesetzt der Baum ist **balanciert**. Später werden wir lernen, dass die Gewährleistung der Balancierung durch spezielle Algorithmen gesichert wird. Des weiteren sind größere, angepasste Knoten für Sekundärspeicher günstiger, diese nennt man B-Bäume. Für Zeichenketten benutzt man als Schlüssel variable Schlüsselgrößen, sogenannte Tries.
+
+``` java
+public class BinarySearchTree<K extends Comparable<K>> implements Iterable<K> {
+
+  ...
+
+  static class TreeNode<K extends Comparable<K>> {
+
+    K key;
+    TreeNode<K> left = null;
+    TreeNode<K> right = null;
+
+    ...
+
+  }
+}
+```
+
+Die Schlüssel müssen das **Comparable-Interface**, d.h. die *compareTo()-Methode*, implementieren, da der Suchbaum auf Vergleichen der Schlüssel basiert. Der Baum selbst implementiert das **Iterable-Interface**, d.h. die *iterator()-Methode*, um Traversierung des Baums über einen Iterator zu erlauben (später Baumtraversierung). *TreeNode* und alles weitere werden als innere Klassen implementiert. Dadurch werden Zugriffe auf Attribute und Methoden der Baumklasse erlaubt. Eine Besonderheit der Implementierung sind die „leeren“ **Pseudoknoten** *head* und *nullNode* zur Vereinfachung der Algorithmen (manchmal „Wächter“ / „sentinel“ genannt). Grundlegende Algorithmen sind:
+
+- Suchen
+- Einfügen
+- Löschen
+
+---
+
+<h4>Implementierung mit Pseudoknoten</h4>
+
+<center>
+![BinärBaum Pseudoknote](docs/BinärBaum_Pseudoknoten.svg)
+</center>
+
+Wir vereinbaren an dieser Stelle, dass man auf dem *head* kein *getRight()* anwenden kann.
+
+``` java
+public class BinarySearchTree<K extends Comparable<K>> implements Iterable<K> {
+
+  ...
+
+  pulic BinarySearchTree() {
+
+    head = new TreeNode<K>(null);
+    nullNode = new TreeNode<K>(null);
+
+    nullNode.setLeft(nullNode);
+    nullNode.setRight(nullNode);
+    head.setRight(nullNode);
+
+  }
+
+  ...
+}
+```
+
+Das Ziel der Implementierung ist, die Reduzierung der Zahl an Sonderfällen. Im *head* würde das Einfügen oder Löschen des Wurzelknotens spezielle Behandlung in der Baum-Klasse erfordern. Der *nullNode* erspart den Test, ob zum linken oder zum rechten Teilknoten navigiert werden kann. Des weiteren ist im *nullNode* ein einfaches Beenden der Navigation (z.B. Beenden der Rekursion) möglich.
+
+#### Weitere Aspekte:
+
+<h4>Komplexität</h4>
+
+Die Komplexität der Operation hängt von der Höhe ab. Der Aufwand für die Höhe des Baumes beträgt $O(h)$. Die Höhe eines ausgeglichenen binären Baumes ist $h=ld(n)$ für Knoten. Bei einem ausgeglichenen oder balancierten Baum unterscheiden sich zum einen der rechte und linke Teilbaum eines jeden Knotens in der Höhe um höchstens $1$ und zum anderen unterscheiden sich je zwei Wege von der Wurzel zu einem Blattknoten höchstens um $1$ in der Länge. Rot-Schwarz Bäume und AVL Bäume benötigen einen Ausgleich nach dem Einfügen und Löschen.
+
+<h4>Entartung von Bäumen</h4>
+
+Eine ungünstige Einfüge- oder Löschreihenfolge führt zu extremer Unbalanciertheit im Baum. Im Extremfall wird der Baum zur Liste, dann haben die Operationen eine Komplexität von $O(n)$. Beispiel:
+
+``` Java
+for (int i = 0; i < 10; i++) {
+  tree.insert(i);
+}
+```
+
+Vermeiden kann man dies durch spezielle Algorithmen zum Einfügen und Löschen, z.B. mit Rot-Schwarz-Bäumen und AVL-Bäumen.
+
 ### AVL-Bäume
 
 ### 2-3-4-Bäume
