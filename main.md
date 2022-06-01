@@ -44,6 +44,10 @@ import:
 
 Unter [dynamischen Datenstrukturen](https://de.wikipedia.org/wiki/Datenstruktur) verstehen wir Datenstrukturen bei denen man Elemente löschen und hinzufügen kann, eine interne Ordnung (z.B. Sortierung) vorliegt und diese Ordnung unter Änderungen aufrecht erhalten bleibt. Ein Beispiel sind Lineare Datenstrukturen und Sortierung. Bei einer **unsortierten** Liste sind Änderungen einfach, aber der Zugriff aufwändig. Bei einer **sortierten** Liste sind die Änderungen schwierig, aber dafür der Zugriff einfach. Für diesen Trade-of ist eine “intelligente Datenstruktur” gesucht, die Änderungen **und** Zugriffe einfach, sprich effizient, hält. Viele dynamische Datenstrukturen nutzen Bäume als Repräsentation.
 
+> Die Inhalte dieses Kurses bauen auf dem Buch [Algorithmen und Datenstrukturen: Eine Einführung mit Java](https://dpunkt.de/produkt/algorithmen-und-datenstrukturen/) von Gunter Saake und Kai-Uwe Sattler auf. Daher empfiehlt sich dieses Buch, um das vorgestellte Wissen zu vertiefen.
+
+> Desweiteren erwarten Sie in diesem Kurs Beispiele zum Implementieren der vorgestellten dynamischen Datenstrukturen. Die benutzte Programmiersprache in diesen Beispielen ist **Java**.
+
 ## Grundlagen
 
 Bevor wir die einzelnen dynamischen Datenstrukturen vorstellen, ein kurzer Abschnitt zu den benötigten Grundlagen.
@@ -56,7 +60,7 @@ Man spricht von einem geordneten Baum, wenn die Reihenfolge der Kinder $\lbrace 
 
 ---
 
-<lia-keep><h4>Beispiel:<h4></lia-keep>
+<lia-keep><h4>Beispiel:</h4></lia-keep>
 
 <div style="width:80%;margin:auto;">
 <img src="docs/Beispiel_Graph_1.svg" style="float:right;"/>
@@ -85,11 +89,9 @@ $T'$ ist **kein** Baum, da $v_{4}$ und $v_{2}$ ein gemeinsames Kind haben.
 </p>
 </div>
 
-<div style="clear:both;"></div>
-
 ---
 
-<lia-keep><h4>Begriffe:<h4></lia-keep>
+<lia-keep><h4>Begriffe:</h4></lia-keep>
 
 <center>
 ![BinärBaum Beschriftung](docs/BinärBaum_Beschriftung.svg)
@@ -107,7 +109,7 @@ Das **Niveau** der jeweiligen Ebene entspricht immer der jeweiligen **Länge des
 
 ---
 
-<lia-keep><h4>Anwendungen:<h4></lia-keep>
+<lia-keep><h4>Anwendungen:</h4></lia-keep>
 
 Man benutzt Bäume beispielsweise zur Darstellung von Hierarchien, wie Taxonomien, oder für Entscheidungsbäume. Bäume werden oft genutzt um sortierte, dynamische oder lineare Datenstrukturen zu repräsentieren, da Einfüge- und Löschoperationen leicht so definiert werden können, dass die Sortierung beibehalten wird. Ein Baum kann auch als Datenindex genutzt werden und stellt so eine Alternative zu Listen und Arrays dar.
 
@@ -125,7 +127,7 @@ Man kann auch einen Baum aus *Termen* bilden. Der Term $(3+4) * 5 + 2 * 3$ ergib
 
 ---
 
-<lia-keep><h4>Atomare Operationen auf Bäumen:<h4></lia-keep>
+<lia-keep><h4>Atomare Operationen auf Bäumen:</h4></lia-keep>
 
 Zu den Operationen zählen **lesen** mit
 
@@ -142,32 +144,32 @@ und **schreiben** mit
 
 ---
 
-<lia-keep><h4>Spezialfall: Binärer Baum als Datentyp:<h4></lia-keep>
+<lia-keep><h4>Spezialfall: Binärer Baum als Datentyp:</h4></lia-keep>
 
-``` Java
+``` java
 
-  class TreeNode<K extends Comparable<K>>{
+  class TreeNode<K extends Comparable<K>> {
 
     K key;
     TreeNode<K> left = null;
     TreeNode<K> right = null;
 
-    public TreeNode(K e) {key = e; }
-    public TreeNode<K> getLeft() {return left; }
-    public TreeNode<K> getRight()  {return right; }
-    public K getKey() {return key; }
+    public TreeNode(K e) {key = e;}
+    public TreeNode<K> getLeft() {return left;}
+    public TreeNode<K> getRight()  {return right;}
+    public K getKey() {return key;}
 
     public void setLeft(TreeNode<K> n) {left = n;}
     public void setRight(TreeNode<K> n) {right = n;}
 
     ...
 
-    }
+  }
 
 ```
 <lia-keep><h5>Beispiel:</h5></lia-keep>
 
-``` Java
+``` java
   TreeNode<Character> root = new TreeNode<Character>(‘A‘);
   TreeNode<Character> node1 = new TreeNode<Character>(‘B‘);
   TreeNode<Character> node2 = new TreeNode<Character>(‘C‘);
@@ -433,6 +435,156 @@ Bei der Postorder Traversierung wird zuerst der linke und der rechte Teilbaum be
 In dem folgenden Kapitel werden wir Ihnen verschiedene Baumtypen vorstellen. Angefangen bei den **Binären Suchbäumen**, gefolgt von den **AVL-** und den **2-3-4-Bäumen**, bis hin zu den **Rot-Schwarz-Bäumen**.
 
 ### Binäre Suchbäume
+
+Auf dieser Seite werden die [binären Suchbäume](https://de.wikipedia.org/wiki/Bin%C3%A4rer_Suchbaum) behandelt. Er ermöglicht einen schneller Zugriff auf Daten mit dem Aufwand O(log n) unter geeigneten Voraussetzungen. Des weiteren ermöglicht er effiziente Sortierung von Daten, durch Heapsort und effiziente Warteschlangen. Der binäre Suchbaum dient als Datenstruktur für kontextfreie Sprachen. In der Computergrafik sind Szenengraphen oft (Beinahe-)Bäume. Bei Informationssysteme dienen binäre Suchbäume zur Datenindizierung und Anfrageoptimierung.
+
+---
+
+<h4>Operationen</h4>
+
+Auf Suchbäumen können die Operationen [Suchen von Elementen](#8), [Einfügen von Elementen](#9) und [Entfernen von Elementen](#10) angewandt werden, wobei letztere zwei voraussetzen, dass die Ordnung der Schlüssel erhalten bleibt.
+
+#### Suchen
+
+Ein binärer Suchbaum kann für viele Anwendungen eingesetzt werden.
+
+Hier ist der Baum ein Datenindex und eine Alternative zu Listen und Arrays. Beispielsweise kann dieser Baum als Suchbaum verwendet werden und nach $5$ gesucht werden.
+
+<center>
+![BinärBaum Suchbaum](docs/BinärBaum_Suchbaum.svg)
+</center>
+
+Bei der Anwendung von Bäumen zur effizienten Suche gibt es pro Knoten einen Schlüssel und ein Datenelement und die Ordnung der Knoten erfolgt anhand der Schlüssel. Bei einem binärer Suchbaum enthält der Knoten $k$ einen Schlüsselwert $k.key$. Alle Schlüsselwerte im linken Teilbaum $k.left$ sind kleiner als $k.key$ und alle Schlüsselwerte im rechten Teilbaum $k.right$ sind größer als $k.key$. Die Auswertung eines Suchbaums sieht wie folgt aus:
+
+> 1. Vergleich des Suchschlüssels mit Schlüssel der Wurzel
+> 2. Wenn kleiner, dann in linken Teilbaum weiter suchen
+> 3. Wenn größer, dann in rechtem Teilbaum weiter suchen
+> 4. Sonst, gefunden oder nicht gefunden
+
+
+``` java
+static class  TreeNode<K extends Comparable<K>>{
+
+  K key;
+  TreeNode<K> left = null;
+  TreeNode<K> right = null;
+
+  public TreeNode(K e) {key = e;}
+  public TreeNode<K> getLeft() {return left;}
+  public TreeNode<K> getRight()  {return right;}
+  public K getKey() {return key; }
+
+  public void setLeft(TreeNode<K> n) {left = n;}
+  public void setRight(TreeNode<K> n) {right = n;}
+
+  ...
+}     
+```
+
+---
+
+<h4>Knotenvergleich</h4>
+
+``` java
+class  TreeNode<...> {
+  ...
+
+  public int compareKeyTo(K k) {
+    return (key == null ? -1 : key.compareTo(k));
+  }
+
+  ...
+}    
+```
+
+---
+
+<h4>Rekursives Suchen</h4>
+
+``` java
+protected  TreeNode<K>recursiveFindNode(TreeNode<K>  n, k){
+    /* k wird gesucht */
+
+    if (n!= nullNode) {
+      int cmp = n.compareKeyTo(k.key);
+      if (cmp == 0) {
+        return n;
+      } else if (cmp > 0) {
+        return recursiveFindNode(n.getLeft(),k);
+      } else {
+        return recursiveFindNode(n.getRight(),k);
+      }
+    }
+    else {
+      return null;
+    }
+}
+```
+
+---
+
+<h4>Iteratives Suchen</h4>
+
+``` java
+protected  TreeNode<K> iterativeFindNode(TreeNode<K> k){
+  /* k wird gesucht */
+
+  TreeNode<K> n = head.getRight();
+  while (n != nullNode) {
+    int cmp = n.compareKeyTo(k.key);
+    if (cmp == 0) {
+      return n;
+    } else {
+      n = (cmp > 0 ? n.getLeft() : n.getRight());
+    }
+  }
+  return null;
+}
+```
+
+---
+
+<h4>Suchen des kleinsten Elements</h4>
+
+``` java
+protected K findMinElement(){
+  TreeNode<K> n = head.getRight();
+  while (n.getLeft() != nullNode) {
+    n = n.getLeft();
+  }
+  return n.getKey();
+}
+```
+
+---
+
+<h4>Suchen des größten Elements</h4>
+
+``` java
+protected K findMaxElement(){
+  TreeNode<K> n = head.getRight();
+  while (n.getRight() != nullNode) {
+    n = n.getRight();
+  }
+  return n.getKey();
+}
+```
+
+---
+
+<h4>Der Baum aus Termen</h4>
+
+Eine weitere Anwendungsmöglichkeit ist der Baum aus Termen. Wir haben den Term $(3+4) * 5 + 2 * 3$, als Baumdarstellung sieht es so aus:
+
+<center>
+![BinärBaum Term](docs/BinärBaum_Term.svg)
+</center>
+
+Bei der Auswertung müssen die Operatoren auf die beiden Werte der Teilbäume angewandt werden.
+
+#### Einfügen
+
+#### Löschen
 
 ### AVL-Bäume
 
