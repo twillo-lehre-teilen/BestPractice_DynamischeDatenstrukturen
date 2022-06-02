@@ -58,7 +58,7 @@ Man spricht von einem geordneten Baum, wenn die Reihenfolge der Kinder $\lbrace 
 
 ---
 
-<lia-keep><h4>Beispiel:</h4></lia-keep>
+<h4>Beispiel:</h4>
 
 <div style="width:80%;margin:auto;">
 <img src="docs/Beispiel_Graph_1.svg" style="float:right;"/>
@@ -89,43 +89,47 @@ $T'$ ist **kein** Baum, da $v_{4}$ und $v_{2}$ ein gemeinsames Kind haben.
 
 ---
 
-<lia-keep><h4>Begriffe:</h4></lia-keep>
+<h4>Begriffe:</h4>
 
-<center>
-![BinärBaum Beschriftung](docs/BinärBaum_Beschriftung.svg)
-</center>
+![BinärBaum Beschriftung](docs/BinärBaum_Beschriftung.svg)<!--
+  style ="display:block;
+          margin:auto;"
+-->
 
 Ein **Pfad** folgt über **Kanten** zu verbundenen **Knoten**, dabei existiert zu jedem Knoten genau ein Pfad von der **Wurzel**. Ein Baum ist immer *zusammenhängend* und *zyklenfrei*.
 
 <br><br>
 
-<center>
-![BinärBaum Niveau](docs/BinärBaum_Niveau.svg)
-</center>
+![BinärBaum Niveau](docs/BinärBaum_Niveau.svg)<!--
+  style ="display:block;
+          margin:auto;"
+-->
 
 Das **Niveau** der jeweiligen Ebene entspricht immer der jeweiligen **Länge des Pfades**. Die Höhe eines Baumes entspricht dem größten Niveau + 1.
 
 ---
 
-<lia-keep><h4>Anwendungen:</h4></lia-keep>
+<h4>Anwendungen:</h4>
 
 Man benutzt Bäume beispielsweise zur Darstellung von Hierarchien, wie Taxonomien, oder für Entscheidungsbäume. Bäume werden oft genutzt um sortierte, dynamische oder lineare Datenstrukturen zu repräsentieren, da Einfüge- und Löschoperationen leicht so definiert werden können, dass die Sortierung beibehalten wird. Ein Baum kann auch als Datenindex genutzt werden und stellt so eine Alternative zu Listen und Arrays dar.
 
-<center>
-![Suchbaum](docs/Suchbaum.svg)
-</center>
+![Suchbaum](docs/Suchbaum.svg)<!--
+  style ="display:block;
+          margin:auto;"
+-->
 
 Hier wird beispielsweise nach der 5 gesucht und der Baum wird als *Suchbaum* genutzt.
 
 Man kann auch einen Baum aus *Termen* bilden. Der Term $(3+4) * 5 + 2 * 3$ ergibt folgenden Baum:
 
-<center>
-![Termbaum](docs/Termbaum.svg)
-</center>
+![Termbaum](docs/Termbaum.svg)<!--
+  style ="display:block;
+          margin:auto;"
+-->
 
 ---
 
-<lia-keep><h4>Atomare Operationen auf Bäumen:</h4></lia-keep>
+<h4>Atomare Operationen auf Bäumen:</h4>
 
 Zu den Operationen zählen **lesen** mit
 
@@ -142,7 +146,7 @@ und **schreiben** mit
 
 ---
 
-<lia-keep><h4>Spezialfall: Binärer Baum als Datentyp:</h4></lia-keep>
+<h4>Spezialfall: Binärer Baum als Datentyp:</h4>
 
 ``` java
 
@@ -165,7 +169,7 @@ und **schreiben** mit
   }
 
 ```
-<lia-keep><h5>Beispiel:</h5></lia-keep>
+<h5>Beispiel:</h5>
 
 ``` java
   TreeNode<Character> root = new TreeNode<Character>(‘A‘);
@@ -178,19 +182,20 @@ und **schreiben** mit
   node2.setLeft(node3);
 ```
 
-<center>
-![Beispiel_Graph_3](docs/Beispiel_Graph_3.svg)
-</center>
+![Beispiel_Graph_3](docs/Beispiel_Graph_3.svg)<!--
+  style ="display:block;
+          margin:auto;"
+-->
 
 ---
 
-<lia-keep><h4>Typische Problemstellungen</h4></lia-keep>
+<h4>Typische Problemstellungen</h4>
 
 Als typische Problemstellungen haben wir zum einen die Traversierung, zum Anderen das Löschen eines inneren Knotens und die daraus folgende Re-strukturierung des Baumes und das Suchen in Bäumen.
 
 ---
 
-<lia-keep><h4>Bäume in Java</h4></lia-keep>
+<h4>Bäume in Java</h4>
 
 In Java gibt es keine hauseigene Implementierung für allgemeine Bäume. Einige Klassen *(TreeMap, TreeSet)* benutzen Bäume zur Realisierung anderer Datenstrukturen. Andere Klassen *(JTree)* benutzen Bäume als Datenmodell zur Visualisierung.
 
@@ -201,9 +206,10 @@ Bäume können visuell gut dargestellt werden. Manchmal ist jedoch eine Serialis
 
 > Bei der **Traversierung** werden systematisch **alle Knoten** des Baumes durchlaufen.
 
-<center>
-![Beispiel_Graph_4](docs/Beispiel_Graph_4.svg)
-</center>
+![Beispiel_Graph_4](docs/Beispiel_Graph_4.svg)<!--
+  style ="display:block;
+          margin:auto;"
+-->
 
 > **Preorder (W-L-R):** $A\to B\to D\to E\to C\to F\to G$
 >
@@ -215,7 +221,7 @@ Bäume können visuell gut dargestellt werden. Manchmal ist jedoch eine Serialis
 
 ---
 
-<lia-keep><h4>Traversierung mit Iteratoren</h4></lia-keep>
+<h4>Traversierung mit Iteratoren</h4>
 
 Bei der Traversierung sind Iteratoren erlaubt. Diese werden schrittweise abgearbeitet und es werden Standardschleifen für die Baumdurchläufe verwendet.
 
@@ -265,7 +271,7 @@ Dabei ist es allerdings notwendig, dass der Bearbeitungszustand zwischengespeich
 
 ---
 
-<lia-keep><h4>Preorder Traversierung</h4></lia-keep>
+<h4>Preorder Traversierung</h4>
 
 Bei der Preorder Traversierung wird der aktuelle Knoten zuerst behandelt und dann der linke oder rechte Teilbaum.
 
@@ -286,7 +292,7 @@ Bei der Preorder Traversierung wird der aktuelle Knoten zuerst behandelt und dan
 
 ---
 
-<lia-keep><h4>Preorder Iteratoren</h4></lia-keep>
+<h4>Preorder Iteratoren</h4>
 
 Der Wurzelknoten wird auf den Stack gelegt, anschließend der rechte Knoten und dann der linke Knoten.
 
@@ -323,7 +329,7 @@ Der Wurzelknoten wird auf den Stack gelegt, anschließend der rechte Knoten und 
 
 ---
 
-<lia-keep><h4>Inorder Traversierung</h4></lia-keep>
+<h4>Inorder Traversierung</h4>
 
 Bei der Inorder Traversierung wird zuerst der linke Teilbaum behandelt, dann der aktuelle Knoten und dann der rechte Teilbaum. Als Ergebnis erhält man den Baum in sortierter Reihenfolge.
 
@@ -343,7 +349,7 @@ Bei der Inorder Traversierung wird zuerst der linke Teilbaum behandelt, dann der
 
 ---
 
-<lia-keep><h4>Inorder Iteratoren</h4></lia-keep>
+<h4>Inorder Iteratoren</h4>
 
 Der Knoten head hat immer einen rechten Nachfolger. Es wird vom Wurzelknoten begonnen alle linken Knoten auf den Stack zu legen.
 
@@ -379,7 +385,7 @@ Der Knoten head hat immer einen rechten Nachfolger. Es wird vom Wurzelknoten beg
 
 ---
 
-<lia-keep><h4>Postorder Traversierung</h4></lia-keep>
+<h4>Postorder Traversierung</h4>
 
 Bei der Postorder Traversierung wird zuerst der linke und der rechte Teilbaum behandelt und dann der aktuelle Knoten. Dies kann beispielsweise genutzt werden, um einen Baum aus Termen, entsprechend der Priorität der Operatoren, auszuwerten.
 
@@ -399,7 +405,7 @@ Bei der Postorder Traversierung wird zuerst der linke und der rechte Teilbaum be
 
 ---
 
-<lia-keep><h4>Levelorder Iteratoren</h4></lia-keep>
+<h4>Levelorder Iteratoren</h4>
 
 ``` Java
   class LevelorderIterator<K extends Comparable <K>> implements Iterator<K> {
@@ -448,9 +454,10 @@ Ein binärer Suchbaum kann für viele Anwendungen eingesetzt werden.
 
 Hier ist der Baum ein Datenindex und eine Alternative zu Listen und Arrays. Beispielsweise kann dieser Baum als Suchbaum verwendet werden und nach $5$ gesucht werden.
 
-<center>
-![BinärBaum Suchbaum](docs/BinärBaum_Suchbaum.svg)
-</center>
+![BinärBaum Suchbaum](docs/BinärBaum_Suchbaum.svg)<!--
+  style ="display:block;
+          margin:auto;"
+-->
 
 Bei der Anwendung von Bäumen zur effizienten Suche gibt es pro Knoten einen Schlüssel und ein Datenelement. Die Ordnung der Knoten erfolgt anhand der Schlüssel. Bei einem binärer Suchbaum enthält der Knoten $k$ einen Schlüsselwert $k.key$. Alle Schlüsselwerte im linken Teilbaum $k.left$ sind kleiner als $k.key$ und alle Schlüsselwerte im rechten Teilbaum $k.right$ sind größer als $k.key$. Die Auswertung eines Suchbaums sieht wie folgt aus:
 
@@ -574,9 +581,10 @@ protected K findMaxElement(){
 
 Eine weitere Anwendungsmöglichkeit ist der Baum aus Termen. Wir haben den Term $(3+4) * 5 + 2 * 3$, als Baumdarstellung sieht es so aus:
 
-<center>
-![BinärBaum Term](docs/BinärBaum_Term.svg)
-</center>
+![BinärBaum Term](docs/BinärBaum_Term.svg)<!--
+  style ="display:block;
+          margin:auto;"
+-->
 
 Bei der Auswertung müssen die Operatoren auf die beiden Werte der Teilbäume angewandt werden.
 
@@ -635,9 +643,10 @@ Zuerst wird das zu löschendes Element gesucht, der Knoten $k$. Nun gibt es **dr
 
 Ein Schlüssel wird in drei Schritten gelöscht. Im ersten Schritt wird der zu löschende Knoten gefunden. Im zweiten Schritt wird der Nachrückknoten gefunden. Dafür gibt es mehrere Fälle. Im **Fall 1** handelt es sich um einen externen Knoten, sprich ein Blatt, ohne Kinder. Dabei wird der Knoten durch einen nullNode ersetzt. Im **Fall 2a** gibt es nur einen rechten Kindknoten, dabei wird der gelöschte Knoten durch den rechten Kindknoten ersetzt. Im **Fall 2b** gibt es nur einen linken Kindknoten und der gelöschte Knoten wird durch diesen ersetzt. Im **Fall 3** gibt es einen internen Knoten mit Kindern rechts und links. Dabei wird der gelöschte Knoten durch den Knoten mit dem kleinstem (alternativ größtem) Schlüssel im rechten (alternativ linken) Teilbaum ersetzt. Im dritten und letzten Schritt wird nun der Baum **reorganisiert**. Während dem Löschen kann sich die Höhe von Teilbäumen ändern.
 
-<center>
-![Binärbaum Einfügen](docs/BinärBaum_Einfügen.svg)
-</center>
+![Binärbaum Einfügen](docs/BinärBaum_Einfügen.svg)<!--
+  style ="display:block;
+          margin:auto;"
+-->
 
 <h5>Programm in Java</h5>
 
@@ -746,9 +755,10 @@ Die Schlüssel müssen das **Comparable-Interface**, d.h. die *compareTo()-Metho
 
 <h4>Implementierung mit Pseudoknoten</h4>
 
-<center>
-![BinärBaum Pseudoknote](docs/BinärBaum_Pseudoknoten.svg)
-</center>
+![BinärBaum Pseudoknote](docs/BinärBaum_Pseudoknoten.svg)<!--
+  style ="display:block;
+          margin:auto;"
+-->
 
 Wir vereinbaren an dieser Stelle, dass man auf dem *head* kein *getRight()* anwenden kann.
 
