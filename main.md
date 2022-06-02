@@ -784,7 +784,9 @@ public class BinarySearchTree<K extends Comparable<K>> implements Iterable<K> {
 
 Das Ziel der Implementierung ist, die Reduzierung der Zahl an Sonderfällen. Im *head* würde das Einfügen oder Löschen des Wurzelknotens spezielle Behandlung in der Baum-Klasse erfordern. Der *nullNode* erspart den Test, ob zum linken oder zum rechten Teilknoten navigiert werden kann. Des weiteren ist im *nullNode* ein einfaches Beenden der Navigation (z.B. Beenden der Rekursion) möglich.
 
-#### Weitere Aspekte:
+#### Weitere Aspekte
+
+---
 
 <h4>Komplexität</h4>
 
@@ -805,6 +807,274 @@ for (int i = 0; i < 10; i++) {
 Vermeiden kann man dies durch spezielle Algorithmen zum Einfügen und Löschen, z.B. mit Rot-Schwarz-Bäumen und AVL-Bäumen.
 
 ### AVL-Bäume
+
+Auf dieser Seite werden [AVL Bäume](https://de.wikipedia.org/wiki/AVL-Baum) behandelt. Ein Suchbaum erfordert nach Einfügen oder Löschen von Knoten einen Ausgleich, da sie sonst entarten. **AVL** steht für die russischen Mathematiker Adelson-Velskii und Landis. Liegt ein binärer Suchbaum mit AVL Kriterium vor, bedeutet das, dass für jeden inneren Knoten gilt: Die Höhe des linken und rechten Teilbaums differieren maximal um **1**. Es reicht nicht diese Bedingung nur für die Wurzel zu fordern, da beide Teilbäume der Wurzel entartet sein könnten.
+
+![AVL-Baum ausgleichen](docs/AVL_ausgleichen.svg)<!--
+style = "display:block;
+         margin:auto;"
+-->
+
+Als Lösungsidee gibt es zwei Ansätze. Zum einen ein abgeschwächtes Kriterium für die ausgeglichene Höhe, beispielsweise AVL Bäume und zum anderen eine ausgeglichene Höhe, aber ein unausgeglichener Verzweigungsgrad. Dabei können wir eine direkte Realisierung als Mehrwegbäume, beispielsweise B-Bäume, nutzen, oder eine Kodierung als binären Baum, beispielsweise Rot-Schwarz-Bäume.
+
+![AVL-Baum und kein AVL-Baum](docs/AVL_kein.svg)<!--
+style = "display:block;
+         margin:auto;"
+-->
+
+---
+
+<h4>Höhe von AVL-Bäumen</h4>
+
+Wie viele Knoten $k_{min}$ hat ein AVL Baum der Höhe $h$ mindestens? Bei einer rekursiven Beziehung ist $k_{min}(0)=1$ , d.h der Baum hat nur eine Wurzel. Bei $k_{min}(1)=2$, das heißt der Baum hat nur einen Zweig und bei $k_{min}(2)=4$, das heißt der Baum hat mehr Zweige. Daraus lässt sich allgemein sagen, dass $k_{min}(n)=k_{min}(n-1)+k_{min}(n-2)+1$. Damit wächst der Baum vergleichbar mit der Fibonacci Reihe.
+
+$k_{min}(h):=\left\{{\begin{array}{ll}1&h=1\\2&h=2\\k_{min}(h-1)+k_{min}(h-2)+1&h>2\end{array}}\right.$
+
+$Fib(n):=\left\{{\begin{array}{ll}0&h=1\\1&h=1\\Fib(h-1)+Fib(h-2)&h>1\end{array}}\right.$
+
+---
+
+<h4>Einfügen in AVL-Bäumen</h4>
+
+Das Einfügen eines Schlüssels erfolgt mit den üblichen Algorithmen. Es kann aber passieren, dass danach die AVL Eigenschaft verletzt ist. Die Balance ist definiert als ***left.height-right.height***. Als AVL Eigenschaft muss die Balance $\in \{-1,0,+1\}$ sein. Nach Einfügen ist die Balance aber $\in \{-2,-1,0,1,2\}$ Reparieren kann man das Ganze mittels Rotation und Doppelrotation.
+
+<h5>Fallunterscheidung</h5>
+
+Beim Einfügen kann man in verschiedene Fälle unterteilen. Eine Verletzung der AVL Eigenschaft tritt ein bei
+
+> 1. Einfügen in linken Teilbaum des linken Kindes
+> 2. Einfügen in rechten Teilbaum des linken Kindes
+> 3. Einfügen in linken Teilbaum des rechten Kindes
+> 4. Einfügen in rechten Teilbaum des rechten Kindes
+
+**1** und **4** sowie **2** und **3** sind symmetrische Problemfälle.
+
+---
+
+<h4>Einfache Rotation</h4>
+
+Wir haben eine Rotation mit linkem Kind nach rechts oder rechtem Kind nach links.
+
+![AVL-Baum einfache Rotation](docs/AVL_einfache_rotation.svg)<!--
+style = "display:block;
+         margin:auto;"
+-->
+
+---
+
+<h4>Doppelrotation</h4>
+
+Wir haben eine Doppelrotation mit linkem Kind nach rechts oder rechtem Kind nach links.
+
+![AVL-Baum Doppelrotation](docs/AVL_doppelrotation.svg)<!--
+style = "display:block;
+         margin:auto;"
+-->
+
+---
+
+<h4>Beispiel</h4>
+
+Im Folgenden werden wir die Rotation an einem Beispiel veranschaulichen:
+
+> - insert 3, 2, 1
+>
+>   → einfache Rotation nach rechts (2,3)
+>
+> - insert 4, 5
+>
+>   → einfache Rotation nach links (4,3)
+>
+> - insert 6
+>
+>   → einfache Rotation (Wurzel) nach links (4,2)
+>
+> - insert 7
+>
+>   → einfache Rotation nach links (6,5)
+>
+> - insert 16, 15
+>
+>   → Doppelrotation nach links (7,15,15)
+>
+> - insert 13+12+11+10
+>
+>   → jeweils einfache Rotation
+>
+> - insert 8, 9
+>
+>   → Doppelrotation nach rechts
+
+![AVL-Baum Rotation](docs/AVL_rotation.svg)<!--
+style = "display:block;
+         margin:auto;
+         width:100%;"
+-->
+
+Eine **Verletzung der AVL-Eigenschaft** tritt ein
+
+1. Beim Einfügen in linken Teilbaum des linken Kindes, dann muss eine Rotation mit dem linkem Kind erfolgen
+2. Beim Einfügen in rechten Teilbaum des linken Kindes, dann muss eine Doppelrotation mit dem linken Kind erfolgen
+3. Beim Einfügen in linken Teilbaum des rechten Kindes, dann muss eine Doppelrotation mit dem rechten Kind erfolgen
+4. Beim Einfügen in rechten Teilbaum des rechten Kindes, dann muss eine Rotation mit dem rechten Kind erfolgen
+
+---
+
+<h4>Implementation</h4>
+
+Die Implementierung ist ähnlich des binären Suchbaums. Der Aufruf um einen neuen Knoten hinzuzufügen geschieht dabei mit ***AvlTree.insert(K k)***.
+
+``` java
+public class AvlTree<K extends Comparable<K>> {
+
+  private AvlTreeNode<K> head;
+  private AvlTreeNode<K> nullNode; //Neuer Knotentyp
+
+  public AvlTree() {
+    head = new AvlTreeNode<K>(null);
+    nullNode = new AvlTreeNode<K>(null);
+
+    nullNode.setLeft(nullNode);
+    nullNode.setRight(nullNode);
+    head.setRight(nullNode);
+  }
+
+  public boolean insert(K k){
+    AvlTreeNode<K> parent = head;
+    AvlTreeNode<K> child = head.getRight();
+
+    while(child != nullNode) {
+      parent = child;
+      int cmp = child.getKey().compareTo(k);
+
+      if(cmp == 0) {
+        return false;
+      } else if (cmp > 0) {
+        child = child.getLeft();
+      } else {
+        child = child.getRight();
+      }
+
+    }
+
+    AvlTreeNode<K> node = new AvlTreeNode<K>(k);
+    node.setLeft(nullNode);
+    node.setRight(nullNode);
+    node.setParent(parent);
+
+    if(parent.compareTo(node) > 0) {
+       parent.setLeft(node);
+    } else {
+       parent.setRight(node);
+    }
+
+    //Nach der Einfügung die Balance ggfs. reparieren
+    parent.repair(node, nullNode);
+    return true;
+
+  }
+}
+```
+
+Die Knotenimplementierung ist zu Beginn genauso wie beim binären Suchbaum. Die Methoden ***balance()*** und ***height()*** dienen als Hilfe für die Balance. Weiterhin wird die Methode ***repair()*** zur Reparatur der Balance benötigt. Sie testet, ob die Balance für den aktuellen Knoten ***(this)*** verletzt ist und repariert diese gegebenenfalls.
+
+``` java
+class AvlTreeNode<K extends Comparable<K>> {
+
+  K key;
+  private AvlTreeNode<K> left;
+  private AvlTreeNode<K> right;
+  private AvlTreeNode<K> parent;  //für jeden Knoten merken wir uns nun den Elternknoten
+
+  public AvlTreeNode(K key){
+    this.left = null;
+    this.right = null;
+    this.parents = null;
+    this.key = key;
+  }
+
+  public AvlTreeNode<K> getLeft() { return left; }
+  public AvlTreeNode<K> getRight() { return right; }
+  public K getKey() { return key; }
+  public void setLeft(AvlTreeNode<K> n) { left = n; }
+  public void setRight(AvlTreeNode<K> n) { right = n; }
+  public void setParent(AvlTreeNode<K> n) { parent = n; }
+
+  public int compareTo(AvlTreeNode<K> other) {
+    return (this.key == null) ? -1 : this.key.compareTo(other.key);
+  }
+
+  //Positive Balance, falls linker Teilbaum größer als der rechte Teilbaum
+  //Negative Balance, falls rechter Teilbaum größer als der linke Teilbaum
+  //Balance = 0, falls ausgeglichen
+  public int balance() {
+
+    if(this.key == null) { //Nullknoten sind stets ausgeglichen
+       return 0;
+    }
+
+    return this.left.height() - this.right.height();
+
+  }
+
+  //Gibt die Länge des längsten Pfades zu einem Blatt wieder
+  public int height() {
+
+    if(this.key == null) { //Nullknoten haben die Höhe 0
+      return 0;
+    }
+
+    return Math.max(this.left.height(), this.right.height()) + 1;
+  }
+
+  //Es werden die zwei nachfolgenden Knoten auf dem Pfad der Einfügung übergeben
+  //man startet vom Punkt der Einfügung, einem Blatt und arbeitet sich von unten nach oben
+  public void repair(AvlTreeNode<K> child, AvlTreeNode<K> grandchild){
+    //Falls wie am head angekommen sind, terminieren wir
+    if(this.key == null) {
+      return;
+    }
+
+    //Fall 1: Einfügen im linken Teilbaum des linken Kindes
+    if(this.balance() > 1 && child.balance() > 0) {
+       child.parent = this.parent;
+       this.parent = child;
+       this.left = child.right;
+       child.right = this;
+
+       if(child.parent.left == this) {
+         child.parent.left = child;
+       } else {
+         child.parent.right = child;
+       }
+
+    }
+
+    //Fall 2: Einfügung im rechten Teilbaum des linken Kindes
+    if(this.balance() > 1 && child.balance() < 0){
+      grandchild.parent = this.parent;
+      this.parent = grandchild;
+      this.left = grandchild.right;
+      this.left.parent = this;
+      grandchild.right = this;
+      child.right = grandchild.left;
+      child.right.parent = child;
+      grandchild.left = child;
+      child.parent = grandchild;
+
+      if(grandchild.parent.left == this) {
+        grandchild.parent.left = grandchild;
+      } else {
+        grandchild.parent.right = grandchild;
+      }
+    }
+
+    //Fall 3 und 4 wären analog
+    //Fahre rekursiv mit Elternknoten fort
+    this.parent.repair(this, child);
+  }
+}
+```
 
 ### 2-3-4-Bäume
 
