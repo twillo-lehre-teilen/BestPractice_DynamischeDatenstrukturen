@@ -1078,6 +1078,21 @@ class AvlTreeNode<K extends Comparable<K>> {
 
 ### 2-3-4-Bäume
 
+Auf dieser Seite werden die  [2-3-4-Bäume](https://de.wikipedia.org/wiki/2-3-4-Baum) behandelt. Die Idee ist ein **ausgeglichener Baum** mit **variablem Verzweigungsgrad**. Die Ausgeglichenheit wird bei der Einfügeoperation gewährleistet und die Implementierung erfolgt durch Binärbäume.
+
+Neben binären Knoten (2-Knoten) haben wir nun auch 3-Knoten und 4-Knoten.
+
+![2-3-4-Baum](docs/2-3-4-Baum.svg)<!--
+style = "display:block;
+         margin:auto;"
+-->
+
+---
+
+<h4>Operationen</h4>
+
+Die **Suche** in 2-3-4 Bäumen erfolgt analog zu binären Suchbäumen. Beim **Einfügen** liefert eine erfolglose Suche den Blattknoten $b$. Ist $b$ ein **2-** oder **3-Knoten** wird eingefügt. Aber ist $b$ ein **4-Knoten** dann wird aufgeteilt *(split)* und das mittlere Element nach oben gezogen. Das Splitten kann sich bis zur Wurzel fortpflanzen *(bottom-up)*.
+
 ### Rot-Schwarz-Bäume
 
 ## Heaps
