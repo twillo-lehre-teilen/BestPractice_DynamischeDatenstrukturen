@@ -1098,3 +1098,44 @@ Die **Suche** in 2-3-4 Bäumen erfolgt analog zu binären Suchbäumen. Beim **Ei
 ## Heaps
 
 ## Hashtabellen
+
+Auf dieser Seite wird das Thema Hashtabellen behandelt. Gesucht ist eine dynamische Datenstruktur mit **sehr schnellem direktem Zugriff** auf Elemente. Die Idee der Hashfunktion ist, dass ein Feld von **0 bis N-1** benutzt wird, beispielsweise ein Array. Die einzelnen Positionen im Feld werden oft als **Buckets** bezeichnet. Die Hashfunktion $h(e)$ bestimmt für Elemente $e$ die Position im Feld. $H(e)$ ist sehr schnell berechenbar. Es gilt $h(e) \neq$ wenn $e \neq e'$.
+
+<h4>Beispiel</h4>
+
+Wir haben ein Array von 0 bis 9 und $h(i)=i * mod * 10$. Das Array sieht nach dem Einfügen der Zahlen 42 und 119 wie folgt aus:
+
+<!--
+data-type="none"
+data-transpose="true"
+-->
+| Index | Eintrag |
+|:----- |:------- |
+| 0     |         |
+| 1     |         |
+| 2     | 42      |
+| 3     |         |
+| 4     |         |
+| 5     |         |
+| 6     |         |
+| 7     |         |
+| 8     |         |
+| 9     | 119     |
+
+Der Vorteil von Hashing ist, dass Anfragen der Form *"Enthält die Datenstruktur das Element 42?"* schnell beantwortbar sind. Dazu verhalten sich Hashtabellen ähnlich zu binären Suchbäumen wie *BucketSort* zu vergleichsbasierten Sortierverfahren.
+
+---
+
+<h4>Hashfunktionen</h4>
+
+Die Hashfunktionen hängen vom Datentyp der Elemente und der konkreten Anwendungen ab. Für den Datentyp *Integer* ist die Hashfunktion meist $h(i)=i * mod * N$. Das funktioniert im Allgemeinen sehr gut, wenn $N$ eine Primzahl ist und hängt mit Methoden zur Erzeugung von Zufallszahlen zusammen. Für andere Datentypen führt man eine Rückführung auf Integer aus. Bei Fließpunkt-Zahlen werden Mantisse und Exponent einfach addiert.
+
+Die Hashwerte sollten gut streuen. Das ist eventuell von den Besonderheiten der Eingabewerte abhängig. Beispielsweise tauchen Buchstaben des Alphabets in Namen unterschiedlich oft auf. Des weiteren müssen die Hash-Werte effizient berechenbar sein. Ein konstanter Zeitbedarf ist erfordert, dieser ist nicht von der Anzahl der gespeicherten Werte abhängig.
+
+---
+
+<h4>Ungünstige Hashfunktionen</h4>
+
+Als **erstes Beispiel** wählen wir $N=2^{i}$ und eine generierte Artikelnummer mit den Kontrollziffern **1**,**3** oder **7** am Ende. Damit wäre die Abbildung nur auf ungeraden Adressen möglich.
+
+Als **zweites Beispiel** wählen wir Matrikelnummern in einer Hashtabelle mit 100 Einträgen. In der ersten Variante nutzen wir die ersten beiden Stellen als Hashwert, damit kann eine Abbildung nur auf wenige Buckets erfolgen. In der zweiten Variante nutzen wir die beiden letzten Stellen und erhalten eine gleichmäßige Verteilung.
