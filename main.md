@@ -1097,6 +1097,50 @@ Die **Suche** in 2-3-4 Bäumen erfolgt analog zu binären Suchbäumen. Beim **Ei
 
 ## Heaps
 
+Auf dieser Seite wird das Thema [Heap Sort](https://de.wikipedia.org/wiki/Heap_Sort) behandelt. Von **"Heap"** gibt es zwei völlig verschiedene Definitionen. Zum einen ist es ein größeres Gebiet im Hauptspeicher, aus dem Programmierer Blöcke beanspruchen und wieder freigeben können und zum anderen ist es ein **balancierter**, **linksbündiger Binärbaum in dem kein Knoten einen Wert hat**, der größer ist als der Wert seines Elternknoten. Im Falle von Heapsort wird die zweite Definition benutzt.
+
+---
+
+<h4>Balancierter Binärbaum</h4>
+
+Jeder Knoten ist in einer Ebene platziert, der Wurzelknoten in Ebene 0. Die Höhe eines Baumes ist die Distanz von seiner Wurzel zum weitest entfernten Knoten plus 1. Ein Knoten ist tiefer als ein anderer Knoten, wenn seine Ebene eine höhere Zahl hat. Ein Binärbaum der Höhe h ist balanciert, wenn alle Knoten der Ebenen 0 bis h-3 zwei Kinder haben.
+
+![Heaps - balancierter Binärbaum](docs/Heaps_balancierter_Binärbaum.svg)<!--
+style = "display:block;
+         margin:auto;"
+-->
+
+Ein balancierter Binärbaum der Höhe $h$ ist linksbündig, wenn er $2^{k}$ Knoten in der Ebene $k$ hat für alle $k<h-1$ und alle Blätter der Ebene $h-1$ so weit wie möglich links sind.
+
+![Heaps - linksbündiger Binärbaum](docs/Heaps_linksbündiger_Binärbaum.svg)<!--
+style = "display:block;
+         margin:auto;"
+-->
+
+---
+
+<h4>Motivation</h4>
+
+Der Vorteil von MergeSort gegenüber QuickSort ist, dass MergeSort einen garantierten Aufwand von $O(n * log * n)$ hat. Der Vorteil von QuickSort gegenüber MergeSort ist, dass QuickSort $n$ viel Speicher benötigt und MergeSort $2n$ viel Speicher. Gibt es nun einen Sortieralgorithmus, der $n$ viel Speicher benötigt und garantiert in $O(n * log * n)$ läuft? **Ja HeapSort!** Mit HeapSort lassen sich zudem die Warteschlangen mit Prioritäten effizient implementieren. Außerdem ist die Idee des Heaps sehr interessant. Eine komplexe Datenstruktur (Baum) wird in einer einfacheren Struktur (Array) abgebildet.
+
+---
+
+<h4>Heap Eigenschaft</h4>
+
+Ein Knoten hat die Heap-Eigenschaft, wenn der Wert in dem Knoten so groß oder größer ist als die Werte seiner Kinder. Alle Blattknoten haben dann auch automatisch die Heap Eigenschaft. Ein Binärbaum ist nur dann ein Heap, wenn alle Knoten die Heap Eigenschaft besitzen.
+
+![Heap Eigenschaft](docs/Heap_Eigenschaft.svg)<!--
+style = "display:block;
+         margin:auto;"
+-->
+
+---
+
+<h4>Anmerkung</h4>
+
+Ein Heap ist kein binärer Suchbaum. Das Sortierkriterium bei Suchbäumen war, dass der Wert eines Knotens stets größer ist, als die Werte der Knoten, die im linken Teilbaum liegen und, dass der Wert eines Knotens stets kleiner ist, als die Werte der Knoten, die im rechten Teilbaum liegen. Das **Sortierkriterium beim Heap** ist, dass die Werte eines Knotens stets größer oder gleich der Werte der Knoten sind, die in beiden Teilbäumen liegen.
+
+
 ## Hashtabellen
 
 Auf dieser Seite wird das Thema Hashtabellen behandelt. Gesucht ist eine dynamische Datenstruktur mit **sehr schnellem direktem Zugriff** auf Elemente. Die Idee der Hashfunktion ist, dass ein Feld von **0 bis N-1** benutzt wird, beispielsweise ein Array. Die einzelnen Positionen im Feld werden oft als **Buckets** bezeichnet. Die Hashfunktion $h(e)$ bestimmt für Elemente $e$ die Position im Feld. $H(e)$ ist sehr schnell berechenbar. Es gilt $h(e) \neq$ wenn $e \neq e'$.
