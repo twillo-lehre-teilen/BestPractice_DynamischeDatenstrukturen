@@ -3,7 +3,7 @@ author:   Lennart Rosseburg für twillo
 
 email:    support.twillo@tib.eu
 
-comment:  Eine Selbstlerneinheit für Dynamische Datenstrukturen mit Beispielen zum Implementieren (Java) und interaktiven H5P-Quizfragen zur Selbstkontrolle. Diese Seite ist lizenziert unter der [Lizenz CC-BY-SA (3.0)](https://creativecommons.org/licenses/by-sa/3.0/legalcode).
+comment:  Eine Selbstlerneinheit für Dynamische Datenstrukturen mit Beispielen in Java und interaktiven H5P-Quizfragen zur Selbstkontrolle. Diese Seite ist lizenziert unter der [Lizenz CC-BY-SA (3.0)](https://creativecommons.org/licenses/by-sa/3.0/legalcode).
 
 language: de
 
@@ -447,8 +447,6 @@ Bei der Postorder Traversierung wird zuerst der linke und der rechte Teilbaum be
 <iframe src="https://raw.githubusercontent.com/TorroRosso46/LiaScript_DynamischeDatenstrukturen/docs/h5p/Grundlagenquiz.h5p?embed=true" width="100%" height="100%" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 
 <iframe src="https://cdn.jsdelivr.net/gh/TorroRosso46/LiaScript_DynamischeDatenstrukturen/docs/h5p/Grundlagenquiz.html?embed=true" width="100%" height="100%" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
-
-<iframe src="https://cdn.jsdelivr.net/gh/TorroRosso46/LiaScript_DynamischeDatenstrukturen/docs/h5p/Grundlagenquiz.h5p?embed=true" width="100%" height="100%" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 
 <iframe src="https://github.com/TorroRosso46/LiaScript_DynamischeDatenstrukturen/tree/master/docs/h5p/Grundlagenquiz.html?embed=true" width="100%" height="100%" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 
