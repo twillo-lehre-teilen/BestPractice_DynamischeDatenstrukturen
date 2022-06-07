@@ -454,20 +454,6 @@ Bei der Postorder Traversierung wird zuerst der linke und der rechte Teilbaum be
 
 <iframe src="https://github.com/TorroRosso46/LiaScript_DynamischeDatenstrukturen/tree/master/docs/h5p/Grundlagenquiz.h5p?embed=true" width="100%" height="100%" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 
----
-
-<iframe src="file:///https://raw.githubusercontent.com/TorroRosso46/LiaScript_DynamischeDatenstrukturen/docs/h5p/Grundlagenquiz.html?embed=true" width="100%" height="100%" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
-
-<iframe src="file:///https://raw.githubusercontent.com/TorroRosso46/LiaScript_DynamischeDatenstrukturen/docs/h5p/Grundlagenquiz.h5p?embed=true" width="100%" height="100%" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
-
-<iframe src="file:///https://cdn.jsdelivr.net/gh/TorroRosso46/LiaScript_DynamischeDatenstrukturen/docs/h5p/Grundlagenquiz.html?embed=true" width="100%" height="100%" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
-
-<iframe src="file:///https://cdn.jsdelivr.net/gh/TorroRosso46/LiaScript_DynamischeDatenstrukturen/docs/h5p/Grundlagenquiz.h5p?embed=true" width="100%" height="100%" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
-
-<iframe src="file:///https://github.com/TorroRosso46/LiaScript_DynamischeDatenstrukturen/tree/master/docs/h5p/Grundlagenquiz.html?embed=true" width="100%" height="100%" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
-
-<iframe src="file:///https://github.com/TorroRosso46/LiaScript_DynamischeDatenstrukturen/tree/master/docs/h5p/Grundlagenquiz.h5p?embed=true" width="100%" height="100%" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
-
 ## Bäume
 
 In dem folgenden Kapitel werden wir Ihnen verschiedene Baumtypen vorstellen. Angefangen bei den **Binären Suchbäumen**, gefolgt von den **AVL-** und den **2-3-4-Bäumen**, bis hin zu den **Rot-Schwarz-Bäumen**.
