@@ -3,7 +3,7 @@ author:   Lennart Rosseburg für twillo
 
 email:    support.twillo@tib.eu
 
-comment:  Eine Selbstlerneinheit [...] Diese Seite ist lizenziert unter der [Lizenz CC-BY-SA (3.0)](https://creativecommons.org/licenses/by-sa/3.0/legalcode).
+comment:  Eine Selbstlerneinheit für Dynamische Datenstrukturen mit Beispielen zum Implementieren (Java) und interaktiven H5P-Quizfragen zur Selbstkontrolle. Diese Seite ist lizenziert unter der [Lizenz CC-BY-SA (3.0)](https://creativecommons.org/licenses/by-sa/3.0/legalcode).
 
 language: de
 
