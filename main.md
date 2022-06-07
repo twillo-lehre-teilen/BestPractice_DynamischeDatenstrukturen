@@ -1095,6 +1095,200 @@ Die **Suche** in 2-3-4 Bäumen erfolgt analog zu binären Suchbäumen. Beim **Ei
 
 ### Rot-Schwarz-Bäume
 
+Auf dieser Seite werden die [Rot-Schwarz Bäume](https://de.wikipedia.org/wiki/Rot-Schwarz-Baum) (auch RS Bäume oder RB Bäume (englisch *"red-black tree"*) genannt) behandelt. Die Idee ist wie bei den 2-3-4 Bäumen ein ausgeglichener Baum mit variablem Verzweigungsgrad. Die Ausgeglichenheit wird bei der Einfügeoperation gewährleistet und die Implementierung erfolgt durch Binärbäume.
+
+---
+
+<h4>Binäre Repräsentation von 2-3-4 Bäumen als Rot-Schwarz Baum</h4>
+
+![Rot-Schwarz-Baum](docs/Rot-Schwarz-Baum.svg)<!--
+style = "display:block;
+         margin:auto;
+         width:100%;"
+-->
+
+Rot-Schwarz-Bäume sind binäre Suchbäume. Jeder Knoten ist entweder rot oder schwarz. Der Wurzelknoten (Null-Knoten) ist per Definition schwarz. Die Kinder jedes roten Knotens sind schwarz. Für jeden Knoten $k$ gilt, dass jeder Pfad von $k$ zu einem Blatt die gleiche Anzahl schwarze Knoten enthält.
+
+---
+
+<h4>Einfügen in RB Bäume</h4>
+
+Zuerst erfolgt **top-down** ein Splitten (nicht-rekursiv) der 4er-Knoten. Dann wird in zwei Hauptfälle unterschieden. Im **Fall 1** hängt der 4er-Knoten an einem 2er-Knoten und im **Fall 2** hängt der 4er-Knoten an einem 3er-Knoten. Hierbei gibt es noch Unterfälle. Bei **Fall 2A** hängt der Teilbaum links oder rechts. Bei **Fall 2B** hängt der Teilbaum in der Mitte.
+
+**Das Splitten im RB Baum bei Fall 1**
+
+![RB Baum 2](docs/RB_Baum2.svg)<!--
+style = "display:block;
+         margin:auto;
+         width:100%;"
+-->
+
+**Das Splitten im RB Baum bei Fall 2a**
+
+![RB Baum 3](docs/RB_Baum3.svg)<!--
+style = "display:block;
+         margin:auto;
+         width:100%;"
+-->
+
+**Das Splitten im RB Baum bei Fall 2b**
+
+![RB Baum 4](docs/RB_Baum4.svg)<!--
+style = "display:block;
+         margin:auto;
+         width:100%;"
+-->
+
+**Beispiel Einfügen der Zahl 13**
+
+![RB Baum Einfügen](docs/RB_Baum_Einfügen.svg)<!--
+style = "display:block;
+         margin:auto;
+         width:100%;"
+-->
+
+Zuerst wird die Einfügeposition gesucht. Die Knoten mit 2 roten Kindern (4-Knoten) werden auf dem Weg präventiv gesplittet. Anschließend wird ein neuer Knoten auf Blattebene erzeugt. Nun wird die Balance wieder hergestellt durch *Split* und *Rotation*.
+
+---
+
+<h4>Implementierung RB Baum</h4>
+
+Die Datenstruktur ist weitgehend identisch mit einem „normalem“ Binärbaum. Das Balance-Kriterium besagt, dass die Anzahl schwarzer Knoten auf dem Weg von jedem Blatt zur Wurzel gleich sein muss. Außerdem hat jeder schwarze Knoten 0, 1 oder 2 rote oder schwarze Kindknoten. Des weiteren kann jeder rote Knoten nur schwarze Kindknoten haben.
+
+Die im Folgenden vorgestellte Implementierung eines binären Suchbaumes wurde abgewandelt.
+
+- Die Klasse **TreeNode** wird zu **RBNode** abgewandelt.
+- Hinzufügen des booleschen Attributs **red**
+- Keine generische Implementierung hier, d.h. **java.lang.Object** wird als Typ des Schlüssels verwendet
+- Pseudoknoten **head** und **nullNode**
+- Innere Klasse für Knoten
+
+``` java
+public class RedBlackTree {
+
+  static class RBNode {
+
+    Object key;
+    RBNode left = null, right = null;
+    boolean red = false;
+    ...
+  }
+
+  private RBNode head, nullNode;
+  ...
+
+}
+```
+
+---
+
+<h4>Einfügeposition</h4>
+
+Nach der Initialisierung wird *grand* ein Niveau tiefer gesetzt. Wenn der Knoten schon enthalten ist, wird ein *false* zurückgegeben. Ansonsten wird die Einfügeposition gesucht. In der **If** Anweisung werden präventiv die 4er Knoten aufgesplittet.
+
+``` java
+public boolean insert (Compareable c) {
+
+  RBNode node, great, grand, parent;
+  int cmp = 0;
+  node = parent = grand = great = head;
+
+  while (node != nullNode) {
+    great = grand; grand = parent; parent = node;
+    cmp = node.getKey.compareKeyTo (c);
+
+    if (cmp == 0) {
+      return false;
+    } else {
+      node = cmp > 0 ? node.getLeft () : node.getRight ();
+    }
+
+    if (node.getLeft().isRed() && node.getRight().isRed()) {
+      split (c, node, parent, grand, great);
+    }
+  }
+}
+```
+
+---
+
+<h4>Neuen Knoten einfügen und Balancieren</h4>
+
+Der neue Knoten wird als linker oder rechter Knoten eingefügt. Eingefügte Knoten werden als Teil eines 4er Knoten angenommen.
+
+``` java
+public boolean insert (Compareable c) {
+
+  ...
+
+  node = new RBNode (c);
+  node.setLeft (nullNode); node.setRight(nullNode);
+
+  if (parent.compareKeyTo(c) > 0) {
+    parent.setLeft(node);
+  } else {
+    parent.setRight(node);
+  }
+
+  split(c, node, parent, grand, great);
+  return true;
+}
+```
+
+**Der Splitvorgang**
+
+Zuerst werden die Knoten umgefärbt (Fall 1), dann wird überprüft, ob der Elternknoten ein 3er Knoten ist und ob der aktuelle Knoten und der Elternknoten gleich orientiert sind. Anschließend wird Fall 2b in Fall 2a überführt. Zum Schluss wird der geteilte Knoten umgefärbt.
+
+``` java
+private void split (Compare c, RBNode node, RBNode parent, RBNode grand, RBNode great) {
+  node.setRed(true);
+  node.getLeft().setRed(false);
+  node.getRight().setRed(false);
+
+  if (parent.isRed()) {
+    grand.setRed(true);
+
+    if (grand.compareKeyTo (c)!= parent.compareKeyTo (c)) {
+      parent = rotate (c, grand);
+    }
+
+    node = rotate(c, great);
+    node.setRed(false);
+  }
+
+  head.getRight().setRed(false);
+}
+```
+
+**Der Rotiervorgang**
+
+Zuerst wird der Nachfolgerknoten bestimmt, und eine Rotation findet rechts oder links herum statt. Zum Schluss wird die Rotation in node eingehängt.
+
+``` java
+private RBNode rotate(Comparable c, RBNode node) {
+  RBNode child, gchild;
+  child = node.compareKeyTo (c) > 0 ? node.getLeft (): node.getRight();
+
+  if (child.getKey().compareKeyTo (c) > 0) {
+    gchild = child, getLeft();
+    child.setLeft(gchild.getRight());
+    gchild.setRight(child);
+  } else {
+    gchild = child.getRight();
+    child.setRight(gchild.getLeft());
+    gchild.setLeft(child);
+  }
+
+  if (node.getKey().compareKeyTo(c) > 0) {
+    node.setLeft(gchild);
+  } else {
+    node.setRight(gchild);
+  }
+
+  return gchild;
+}
+```
+
 ## Heaps
 
 Auf dieser Seite wird das Thema [Heap Sort](https://de.wikipedia.org/wiki/Heap_Sort) behandelt. Von **"Heap"** gibt es zwei völlig verschiedene Definitionen. Zum einen ist es ein größeres Gebiet im Hauptspeicher, aus dem Programmierer Blöcke beanspruchen und wieder freigeben können und zum anderen ist es ein **balancierter**, **linksbündiger Binärbaum in dem kein Knoten einen Wert hat**, der größer ist als der Wert seines Elternknoten. Im Falle von Heapsort wird die zweite Definition benutzt.
