@@ -438,15 +438,15 @@ Bei der Postorder Traversierung wird zuerst der linke und der rechte Teilbaum be
 
 ### Grundlagenquiz
 
-<iframe src="https://raw.githack.com/TorroRosso46/LiaScript_DynamischeDatenstrukturen/master/docs/h5p/Grundlagenquiz.html" width="100%"  frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+<iframe src="https://raw.githack.com/TorroRosso46/LiaScript_DynamischeDatenstrukturen/master/docs/h5p/GLQ.html" width="100%" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+
+<iframe src="/docs/h5p/GLQ.html" width="100%" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 
 ---
 
-<iframe src="https://raw.githack.com/TorroRosso46/LiaScript_DynamischeDatenstrukturen/master/docs/h5p/GLQ.html" width="100%"  frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+<iframe src="https://raw.githack.com/TorroRosso46/LiaScript_DynamischeDatenstrukturen/master/docs/h5p/GLQ2.html" width="100%" height="auto" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 
----
-
-<iframe src="https://raw.githack.com/TorroRosso46/LiaScript_DynamischeDatenstrukturen/master/docs/h5p/GLQ2.html" width="100%"  frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+<iframe src="/docs/h5p/GLQ2.html" width="100%" frameborder="0" height="auto" allowfullscreen="allowfullscreen"></iframe>
 
 ## Bäume
 
