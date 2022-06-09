@@ -444,6 +444,12 @@ Bei der Postorder Traversierung wird zuerst der linke und der rechte Teilbaum be
 
 ---
 
+<iframe src="/docs/h5p/Grundlagenquiz.html" width="100%" height="auto" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+
+<iframe src="./docs/h5p/Grundlagenquiz.html" width="100%" height="100%" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+
+---
+
 <iframe src="https://raw.githubusercontent.com/TorroRosso46/LiaScript_DynamischeDatenstrukturen/docs/h5p/Grundlagenquiz.html" width="100%" height="100%" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 
 <iframe src="https://raw.githubusercontent.com/TorroRosso46/LiaScript_DynamischeDatenstrukturen/docs/h5p/Grundlagenquiz.h5p" width="100%" height="100%" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
