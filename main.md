@@ -438,7 +438,7 @@ Bei der Postorder Traversierung wird zuerst der linke und der rechte Teilbaum be
 
 ### Grundlagenquiz
 
-<iframe src="https://raw.githack.com/TorroRosso46/LiaScript_DynamischeDatenstrukturen/master/docs/h5p/GLQ_compact.html" width="100%" height="100%" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+<iframe src="https://raw.githack.com/TorroRosso46/LiaScript_DynamischeDatenstrukturen/master/docs/h5p/GLQ_compact.html" width="100%" height="759" frameborder="0" overflow="auto" scrolling="no"></iframe><script src="https://h5p.org/sites/all/modules/h5p/library/js/h5p-resizer.js" charset="UTF-8"></script>
 
 ## Bäume
 
