@@ -9,9 +9,9 @@ language: de
 
 mode:     Textbook
 
-version:  0.0.1
+version:  1.0.0
 
-date:     07/06/2022
+date:     12/06/2022
 
 logo:     docs/thumbnail.JPG
 
@@ -1386,6 +1386,4 @@ Als **zweites Beispiel** wählen wir Matrikelnummern in einer Hashtabelle mit 10
 
 ## Abschlussquiz
 
-<iframe src="https://raw.githack.com/TorroRosso46/LiaScript_DynamischeDatenstrukturen/master/docs/h5p/Abschlussquiz_compact.html" width="100%" height="271" frameborder="0" overflow="auto" scrolling="no" allowfullscreen="allowfullscreen"></iframe><script src="https://h5p.org/sites/all/modules/h5p/library/js/h5p-resizer.js" charset="UTF-8"></script>
-
-<iframe src="https://raw.githack.com/TorroRosso46/LiaScript_DynamischeDatenstrukturen/master/docs/h5p/Abschlussquiz_compact.html?embed=true" width="100%" height="271" frameborder="0" overflow="auto" scrolling="no" allowfullscreen="allowfullscreen"></iframe><script src="https://h5p.org/sites/all/modules/h5p/library/js/h5p-resizer.js" charset="UTF-8"></script>
+<iframe src="https://raw.githack.com/TorroRosso46/LiaScript_DynamischeDatenstrukturen/master/docs/h5p/Abschlussquiz_compact.html" width="100%" height="271" frameborder="0" overflow="auto" scrolling="no"></iframe><script src="https://h5p.org/sites/all/modules/h5p/library/js/h5p-resizer.js" charset="UTF-8"></script>
