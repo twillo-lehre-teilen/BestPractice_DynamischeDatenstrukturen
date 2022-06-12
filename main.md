@@ -1383,3 +1383,9 @@ Die Hashwerte sollten gut streuen. Das ist eventuell von den Besonderheiten der 
 Als **erstes Beispiel** wählen wir $N=2^{i}$ und eine generierte Artikelnummer mit den Kontrollziffern **1**,**3** oder **7** am Ende. Damit wäre die Abbildung nur auf ungeraden Adressen möglich.
 
 Als **zweites Beispiel** wählen wir Matrikelnummern in einer Hashtabelle mit 100 Einträgen. In der ersten Variante nutzen wir die ersten beiden Stellen als Hashwert, damit kann eine Abbildung nur auf wenige Buckets erfolgen. In der zweiten Variante nutzen wir die beiden letzten Stellen und erhalten eine gleichmäßige Verteilung.
+
+## Abschlussquiz
+
+<iframe src="https://raw.githack.com/TorroRosso46/LiaScript_DynamischeDatenstrukturen/master/docs/h5p/Abschlussquiz_compact.html" width="100%" height="271" frameborder="0" overflow="auto" scrolling="no" allowfullscreen="allowfullscreen"></iframe><script src="https://h5p.org/sites/all/modules/h5p/library/js/h5p-resizer.js" charset="UTF-8"></script>
+
+<iframe src="https://raw.githack.com/TorroRosso46/LiaScript_DynamischeDatenstrukturen/master/docs/h5p/Abschlussquiz_compact.html?embed=true" width="100%" height="271" frameborder="0" overflow="auto" scrolling="no" allowfullscreen="allowfullscreen"></iframe><script src="https://h5p.org/sites/all/modules/h5p/library/js/h5p-resizer.js" charset="UTF-8"></script>
