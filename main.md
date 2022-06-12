@@ -1387,7 +1387,3 @@ Als **zweites Beispiel** wählen wir Matrikelnummern in einer Hashtabelle mit 10
 ## Abschlussquiz
 
 <iframe src="https://raw.githack.com/TorroRosso46/LiaScript_DynamischeDatenstrukturen/master/docs/h5p/Abschlussquiz_compact.html" width="100%" height="550" frameborder="0" overflow="auto" scrolling="no"></iframe><script src="https://h5p.org/sites/all/modules/h5p/library/js/h5p-resizer.js" charset="UTF-8"></script>
-
-## Test
-
-<iframe src="https://raw.githack.com/TorroRosso46/LiaScript_DynamischeDatenstrukturen/master/docs/h5p/Abschlussquiz_compact.html?embed=true" width="670" height="545" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
