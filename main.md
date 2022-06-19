@@ -42,7 +42,7 @@ script:   https://h5p.org/sites/all/modules/h5p/library/js/h5p-resizer.js
 
 ## Einleitung
 
-Unter [dynamischen Datenstrukturen](https://de.wikipedia.org/wiki/Datenstruktur) verstehen wir Datenstrukturen bei denen man Elemente löschen und hinzufügen kann, eine interne Ordnung (z.B. Sortierung) vorliegt und diese Ordnung unter Änderungen aufrecht erhalten bleibt. Ein Beispiel sind Lineare Datenstrukturen und Sortierung. Bei einer **unsortierten** Liste sind Änderungen einfach, aber der Zugriff aufwändig. Bei einer **sortierten** Liste sind die Änderungen schwierig, aber dafür der Zugriff einfach. Für diesen Trade-of ist eine “intelligente Datenstruktur” gesucht, die Änderungen **und** Zugriffe einfach, sprich effizient, hält. Viele dynamische Datenstrukturen nutzen Bäume als Repräsentation.
+Unter [dynamischen Datenstrukturen](https://de.wikipedia.org/wiki/Datenstruktur) verstehen wir Datenstrukturen, bei denen man Elemente löschen und hinzufügen kann, eine interne Ordnung (z.B. Sortierung) vorliegt und diese Ordnung unter Änderungen aufrecht erhalten bleibt. Ein Beispiel sind Lineare Datenstrukturen und Sortierung. Bei einer **unsortierten** Liste sind Änderungen einfach, aber der Zugriff aufwändig. Bei einer **sortierten** Liste sind die Änderungen schwierig, aber dafür der Zugriff einfach. Für diesen Trade-off ist eine “intelligente Datenstruktur” gesucht, die Änderungen **und** Zugriffe einfach, sprich effizient, hält. Viele dynamische Datenstrukturen nutzen Bäume als Repräsentation.
 
 > Die Inhalte dieses Kurses bauen auf dem Buch [Algorithmen und Datenstrukturen: Eine Einführung mit Java](https://dpunkt.de/produkt/algorithmen-und-datenstrukturen/) von Gunter Saake und Kai-Uwe Sattler auf. Daher empfiehlt sich dieses Buch, um das vorgestellte Wissen zu vertiefen.
 
@@ -353,7 +353,7 @@ Bei der Inorder Traversierung wird zuerst der linke Teilbaum behandelt, dann der
 
 <h4>Inorder Iteratoren</h4>
 
-Der Knoten head hat immer einen rechten Nachfolger. Es wird vom Wurzelknoten begonnen alle linken Knoten auf den Stack zu legen.
+Der Knoten Head hat immer einen rechten Nachfolger. Es wird vom Wurzelknoten begonnen alle linken Knoten auf den Stack zu legen.
 
 ``` Java
   class InorderIterator<K extends Comparable <K>> implements Iterator<K> {
@@ -446,7 +446,7 @@ In dem folgenden Kapitel werden wir Ihnen verschiedene Baumtypen vorstellen. Ang
 
 ### Binäre Suchbäume
 
-Auf dieser Seite werden die [binären Suchbäume](https://de.wikipedia.org/wiki/Bin%C3%A4rer_Suchbaum) behandelt. Er ermöglicht einen schneller Zugriff auf Daten mit dem Aufwand O(log n) unter geeigneten Voraussetzungen. Des weiteren ermöglicht er effiziente Sortierung von Daten, durch Heapsort und effiziente Warteschlangen. Der binäre Suchbaum dient als Datenstruktur für kontextfreie Sprachen. In der Computergrafik sind Szenengraphen oft (Beinahe-)Bäume. Bei Informationssysteme dienen binäre Suchbäume zur Datenindizierung und Anfrageoptimierung.
+Auf dieser Seite werden die [binären Suchbäume](https://de.wikipedia.org/wiki/Bin%C3%A4rer_Suchbaum) behandelt. Er ermöglicht einen schnellen Zugriff auf Daten mit dem Aufwand O(log n) unter geeigneten Voraussetzungen. Des Weiteren ermöglicht er effiziente Sortierung von Daten, durch Heapsort und effiziente Warteschlangen. Der binäre Suchbaum dient als Datenstruktur für kontextfreie Sprachen. In der Computergrafik sind Szenengraphen oft (Beinahe-)Bäume. Bei Informationssysteme dienen binäre Suchbäume zur Datenindizierung und Anfrageoptimierung.
 
 ---
 
@@ -465,7 +465,7 @@ Hier ist der Baum ein Datenindex und eine Alternative zu Listen und Arrays. Beis
           margin:auto;"
 -->
 
-Bei der Anwendung von Bäumen zur effizienten Suche gibt es pro Knoten einen Schlüssel und ein Datenelement. Die Ordnung der Knoten erfolgt anhand der Schlüssel. Bei einem binärer Suchbaum enthält der Knoten $k$ einen Schlüsselwert $k.key$. Alle Schlüsselwerte im linken Teilbaum $k.left$ sind kleiner als $k.key$ und alle Schlüsselwerte im rechten Teilbaum $k.right$ sind größer als $k.key$. Die Auswertung eines Suchbaums sieht wie folgt aus:
+Bei der Anwendung von Bäumen zur effizienten Suche gibt es pro Knoten einen Schlüssel und ein Datenelement. Die Ordnung der Knoten erfolgt anhand der Schlüssel. Bei einem binären Suchbaum enthält der Knoten $k$ einen Schlüsselwert $k.key$. Alle Schlüsselwerte im linken Teilbaum $k.left$ sind kleiner als $k.key$ und alle Schlüsselwerte im rechten Teilbaum $k.right$ sind größer als $k.key$. Die Auswertung eines Suchbaums sieht wie folgt aus:
 
 > 1. Vergleich des Suchschlüssels mit Schlüssel der Wurzel
 > 2. Wenn kleiner, dann in linken Teilbaum weiter suchen
@@ -647,7 +647,7 @@ Zuerst wird das zu löschendes Element gesucht, der Knoten $k$. Nun gibt es **dr
   2. $k$ hat ein Kind: Kind „hochziehen“
   3. $k$ hat zwei Kinder: Tausche mit weitest links stehenden Kind des rechten Teilbaums, da dieser in der Sortierreihenfolge der nächste Knoten ist und entferne diesen nach den Regeln 1. oder 2.
 
-Ein Schlüssel wird in drei Schritten gelöscht. Im ersten Schritt wird der zu löschende Knoten gefunden. Im zweiten Schritt wird der Nachrückknoten gefunden. Dafür gibt es mehrere Fälle. Im **Fall 1** handelt es sich um einen externen Knoten, sprich ein Blatt, ohne Kinder. Dabei wird der Knoten durch einen nullNode ersetzt. Im **Fall 2a** gibt es nur einen rechten Kindknoten, dabei wird der gelöschte Knoten durch den rechten Kindknoten ersetzt. Im **Fall 2b** gibt es nur einen linken Kindknoten und der gelöschte Knoten wird durch diesen ersetzt. Im **Fall 3** gibt es einen internen Knoten mit Kindern rechts und links. Dabei wird der gelöschte Knoten durch den Knoten mit dem kleinstem (alternativ größtem) Schlüssel im rechten (alternativ linken) Teilbaum ersetzt. Im dritten und letzten Schritt wird nun der Baum **reorganisiert**. Während dem Löschen kann sich die Höhe von Teilbäumen ändern.
+Ein Schlüssel wird in drei Schritten gelöscht. Im ersten Schritt wird der zu löschende Knoten gefunden. Im zweiten Schritt wird der Nachrückknoten gefunden. Dafür gibt es mehrere Fälle. Im **Fall 1** handelt es sich um einen externen Knoten, sprich ein Blatt, ohne Kinder. Dabei wird der Knoten durch einen NullNode ersetzt. Im **Fall 2a** gibt es nur einen rechten Kindknoten, dabei wird der gelöschte Knoten durch den rechten Kindknoten ersetzt. Im **Fall 2b** gibt es nur einen linken Kindknoten und der gelöschte Knoten wird durch diesen ersetzt. Im **Fall 3** gibt es einen internen Knoten mit Kindern rechts und links. Dabei wird der gelöschte Knoten durch den Knoten mit dem kleinstem (alternativ größtem) Schlüssel im rechten (alternativ linken) Teilbaum ersetzt. Im dritten und letzten Schritt wird nun der Baum **reorganisiert**. Während dem Löschen kann sich die Höhe von Teilbäumen ändern.
 
 ![Binärbaum Einfügen](docs/BinärBaum_Einfügen.svg)<!--
   style ="display:block;
@@ -732,7 +732,7 @@ public boolean  remove(K k) {
 
 #### Implementierung
 
-Ein binärer Suchbaum ist eine häufig verwendete Hauptspeicherstruktur und ist besonders geeignet für Schlüssel fester Größe, z.B. numerische wie *int*, *float* und *char[n]*. Der Aufwand von $O(log n)$ für Suchen, Einfügen und Löschen ist garantiert, vorausgesetzt der Baum ist **balanciert**. Später werden wir lernen, dass die Gewährleistung der Balancierung durch spezielle Algorithmen gesichert wird. Des weiteren sind größere, angepasste Knoten für Sekundärspeicher günstiger, diese nennt man B-Bäume. Für Zeichenketten benutzt man als Schlüssel variable Schlüsselgrößen, sogenannte Tries.
+Ein binärer Suchbaum ist eine häufig verwendete Hauptspeicherstruktur und ist besonders geeignet für Schlüssel fester Größe, z.B. numerische wie *int*, *float* und *char[n]*. Der Aufwand von $O(log n)$ für Suchen, Einfügen und Löschen ist garantiert, vorausgesetzt der Baum ist **balanciert**. Später werden wir lernen, dass die Gewährleistung der Balancierung durch spezielle Algorithmen gesichert wird. Des Weiteren sind größere, angepasste Knoten für Sekundärspeicher günstiger, diese nennt man B-Bäume. Für Zeichenketten benutzt man als Schlüssel variable Schlüsselgrößen, sogenannte Tries.
 
 ``` java
 public class BinarySearchTree<K extends Comparable<K>> implements Iterable<K> {
@@ -751,7 +751,7 @@ public class BinarySearchTree<K extends Comparable<K>> implements Iterable<K> {
 }
 ```
 
-Die Schlüssel müssen das **Comparable-Interface**, d.h. die *compareTo()-Methode*, implementieren, da der Suchbaum auf Vergleichen der Schlüssel basiert. Der Baum selbst implementiert das **Iterable-Interface**, d.h. die *iterator()-Methode*, um Traversierung des Baums über einen Iterator zu erlauben (später Baumtraversierung). *TreeNode* und alles weitere werden als innere Klassen implementiert. Dadurch werden Zugriffe auf Attribute und Methoden der Baumklasse erlaubt. Eine Besonderheit der Implementierung sind die „leeren“ **Pseudoknoten** *head* und *nullNode* zur Vereinfachung der Algorithmen (manchmal „Wächter“ / „sentinel“ genannt). Grundlegende Algorithmen sind:
+Die Schlüssel müssen das **Comparable-Interface**, d.h. die *compareTo()-Methode*, implementieren, da der Suchbaum auf Vergleichen der Schlüssel basiert. Der Baum selbst implementiert das **Iterable-Interface**, d.h. die *iterator()-Methode*, um Traversierung des Baums über einen Iterator zu erlauben (später Baumtraversierung). *TreeNode* und alles Weitere werden als innere Klassen implementiert. Dadurch werden Zugriffe auf Attribute und Methoden der Baumklasse erlaubt. Eine Besonderheit der Implementierung sind die „leeren“ **Pseudoknoten** *head* und *nullNode* zur Vereinfachung der Algorithmen (manchmal „Wächter“ / „sentinel“ genannt). Grundlegende Algorithmen sind:
 
 - Suchen
 - Einfügen
@@ -788,7 +788,7 @@ public class BinarySearchTree<K extends Comparable<K>> implements Iterable<K> {
 }
 ```
 
-Das Ziel der Implementierung ist, die Reduzierung der Zahl an Sonderfällen. Im *head* würde das Einfügen oder Löschen des Wurzelknotens spezielle Behandlung in der Baum-Klasse erfordern. Der *nullNode* erspart den Test, ob zum linken oder zum rechten Teilknoten navigiert werden kann. Des weiteren ist im *nullNode* ein einfaches Beenden der Navigation (z.B. Beenden der Rekursion) möglich.
+Das Ziel der Implementierung ist, die Reduzierung der Zahl an Sonderfällen. Im *Head* würde das Einfügen oder Löschen des Wurzelknotens spezielle Behandlung in der Baum-Klasse erfordern. Der *NullNode* erspart den Test, ob zum linken oder zum rechten Teilknoten navigiert werden kann. Des Weiteren ist im *NullNode* ein einfaches Beenden der Navigation (z.B. Beenden der Rekursion) möglich.
 
 #### Weitere Aspekte
 
@@ -919,7 +919,7 @@ style = "display:block;
 
 Eine **Verletzung der AVL-Eigenschaft** tritt ein
 
-1. Beim Einfügen in linken Teilbaum des linken Kindes, dann muss eine Rotation mit dem linkem Kind erfolgen
+1. Beim Einfügen in linken Teilbaum des linken Kindes, dann muss eine Rotation mit dem linken Kind erfolgen
 2. Beim Einfügen in rechten Teilbaum des linken Kindes, dann muss eine Doppelrotation mit dem linken Kind erfolgen
 3. Beim Einfügen in linken Teilbaum des rechten Kindes, dann muss eine Doppelrotation mit dem rechten Kind erfolgen
 4. Beim Einfügen in rechten Teilbaum des rechten Kindes, dann muss eine Rotation mit dem rechten Kind erfolgen
@@ -1159,14 +1159,14 @@ Zuerst wird die Einfügeposition gesucht. Die Knoten mit 2 roten Kindern (4-Knot
 
 <h4>Implementierung RB Baum</h4>
 
-Die Datenstruktur ist weitgehend identisch mit einem „normalem“ Binärbaum. Das Balance-Kriterium besagt, dass die Anzahl schwarzer Knoten auf dem Weg von jedem Blatt zur Wurzel gleich sein muss. Außerdem hat jeder schwarze Knoten 0, 1 oder 2 rote oder schwarze Kindknoten. Des weiteren kann jeder rote Knoten nur schwarze Kindknoten haben.
+Die Datenstruktur ist weitgehend identisch mit einem „normalem“ Binärbaum. Das Balance-Kriterium besagt, dass die Anzahl schwarzer Knoten auf dem Weg von jedem Blatt zur Wurzel gleich sein muss. Außerdem hat jeder schwarze Knoten 0, 1 oder 2 rote oder schwarze Kindknoten. Des Weiteren kann jeder rote Knoten nur schwarze Kindknoten haben.
 
 Die im Folgenden vorgestellte Implementierung eines binären Suchbaumes wurde abgewandelt.
 
 - Die Klasse **TreeNode** wird zu **RBNode** abgewandelt.
 - Hinzufügen des booleschen Attributs **red**
 - Keine generische Implementierung hier, d.h. **java.lang.Object** wird als Typ des Schlüssels verwendet
-- Pseudoknoten **head** und **nullNode**
+- Pseudoknoten **Head** und **NullNode**
 - Innere Klasse für Knoten
 
 ``` java
@@ -1374,7 +1374,7 @@ Der Vorteil von Hashing ist, dass Anfragen der Form *"Enthält die Datenstruktur
 
 Die Hashfunktionen hängen vom Datentyp der Elemente und der konkreten Anwendungen ab. Für den Datentyp *Integer* ist die Hashfunktion meist $h(i)=i * mod * N$. Das funktioniert im Allgemeinen sehr gut, wenn $N$ eine Primzahl ist und hängt mit Methoden zur Erzeugung von Zufallszahlen zusammen. Für andere Datentypen führt man eine Rückführung auf Integer aus. Bei Fließpunkt-Zahlen werden Mantisse und Exponent einfach addiert.
 
-Die Hashwerte sollten gut streuen. Das ist eventuell von den Besonderheiten der Eingabewerte abhängig. Beispielsweise tauchen Buchstaben des Alphabets in Namen unterschiedlich oft auf. Des weiteren müssen die Hash-Werte effizient berechenbar sein. Ein konstanter Zeitbedarf ist erfordert, dieser ist nicht von der Anzahl der gespeicherten Werte abhängig.
+Die Hashwerte sollten gut streuen. Das ist eventuell von den Besonderheiten der Eingabewerte abhängig. Beispielsweise tauchen Buchstaben des Alphabets in Namen unterschiedlich oft auf. Des Weiteren müssen die Hash-Werte effizient berechenbar sein. Ein konstanter Zeitbedarf ist erfordert, dieser ist nicht von der Anzahl der gespeicherten Werte abhängig.
 
 ---
 
