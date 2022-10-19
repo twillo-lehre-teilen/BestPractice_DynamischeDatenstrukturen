@@ -11,7 +11,7 @@ mode:     Textbook
 
 version:  1.0.0
 
-date:     12/06/2022
+date:     19/10/2022
 
 logo:     docs/thumbnail.JPG
 
