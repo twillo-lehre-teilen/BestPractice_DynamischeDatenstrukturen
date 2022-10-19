@@ -17,7 +17,7 @@ logo:     docs/thumbnail.JPG
 
 icon:     docs/twillo_logo.svg
 
-link:     https://cdn.jsdelivr.net/gh/TorroRosso46/LiaScript_DynamischeDatenstrukturen/custom.css
+link:     https://cdn.jsdelivr.net/gh/twillo-lehre-teilen/BestPractice_DynamischeDatenstrukturen/custom.css
 
 script:   https://h5p.org/sites/all/modules/h5p/library/js/h5p-resizer.js
 -->
@@ -438,7 +438,7 @@ Bei der Postorder Traversierung wird zuerst der linke und der rechte Teilbaum be
 
 ### Grundlagenquiz
 
-<iframe src="https://raw.githack.com/TorroRosso46/LiaScript_DynamischeDatenstrukturen/master/docs/h5p/GLQ_compact.html" width="100%" height="759" frameborder="0" overflow="auto" scrolling="no"></iframe><script src="https://h5p.org/sites/all/modules/h5p/library/js/h5p-resizer.js" charset="UTF-8"></script>
+<iframe src="https://raw.githack.com/twillo-lehre-teilen/BestPractice_DynamischeDatenstrukturen/master/docs/h5p/GLQ_compact.html" width="100%" height="759" frameborder="0" overflow="auto" scrolling="no"></iframe><script src="https://h5p.org/sites/all/modules/h5p/library/js/h5p-resizer.js" charset="UTF-8"></script>
 
 ## Bäume
 
@@ -1386,4 +1386,4 @@ Als **zweites Beispiel** wählen wir Matrikelnummern in einer Hashtabelle mit 10
 
 ## Abschlussquiz
 
-<iframe src="https://raw.githack.com/TorroRosso46/LiaScript_DynamischeDatenstrukturen/master/docs/h5p/Abschlussquiz_compact.html" width="100%" height="550" frameborder="0" overflow="auto" scrolling="no"></iframe><script src="https://h5p.org/sites/all/modules/h5p/library/js/h5p-resizer.js" charset="UTF-8"></script>
+<iframe src="https://raw.githack.com/twillo-lehre-teilen/BestPractice_DynamischeDatenstrukturen/master/docs/h5p/Abschlussquiz_compact.html" width="100%" height="550" frameborder="0" overflow="auto" scrolling="no"></iframe><script src="https://h5p.org/sites/all/modules/h5p/library/js/h5p-resizer.js" charset="UTF-8"></script>
